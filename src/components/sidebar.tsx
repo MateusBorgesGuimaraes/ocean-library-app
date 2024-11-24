@@ -1,0 +1,76 @@
+import styles from './sidebar.module.css';
+import { icons } from '../../public/assets/assets';
+import Image from 'next/image';
+import Link from 'next/link';
+
+export const Sidebar = () => {
+  return (
+    <section className={`${styles.sidebar}`}>
+      <div className={`${styles.publicContent}`}>
+        <div className={`${styles.icon}`}>
+          <Link href="/">
+            <Image src={icons.logoIcon} alt="logo" />
+          </Link>
+        </div>
+
+        <div className={`${styles.generalMenu}`}>
+          <ul className={`${styles.menuList}`}>
+            <li className={`${styles.menuItem}`}>
+              <Link href="/news">
+                <div className={`${styles.itemContainer}`}>
+                  <Image src={icons.newsIcon} alt="news icon" />
+                  news
+                </div>
+              </Link>
+            </li>
+
+            <li className={`${styles.menuItem}`}>
+              <Link href="/events">
+                <div className={`${styles.itemContainer}`}>
+                  <Image src={icons.eventIcon} alt="event icon" />
+                  events
+                </div>
+              </Link>
+            </li>
+
+            <li className={`${styles.menuItem}`}>
+              <Link href="/request">
+                <div className={`${styles.itemContainer}`}>
+                  <Image src={icons.requestIcon} alt="request icon" />
+                  request
+                </div>
+              </Link>
+            </li>
+
+            <li className={`${styles.menuItem}`}>
+              <Link href="/loans">
+                <div className={`${styles.itemContainer}`}>
+                  <Image src={icons.loansIcon} alt="loans icon" />
+                  loans
+                </div>
+              </Link>
+            </li>
+
+            <li className={`${styles.menuItem}`}>
+              <Link href="/signin">
+                <div className={`${styles.itemContainer}`}>
+                  <Image src={icons.signInIcon} alt="sign in icon" />
+                  sign in
+                </div>
+              </Link>
+            </li>
+
+            <li className={`${styles.menuItem}`}>
+              <Link href="/signup">
+                <div className={`${styles.itemContainer}`}>
+                  <Image src={icons.signUpIcon} alt="sign up icon" />
+                  sign up
+                </div>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+};
