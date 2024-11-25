@@ -56,6 +56,7 @@ import newsTest2Image from './images/news-test2.jpg';
 import testimonial1Image from './images/testimonial-1.jpg';
 import testimonial2Image from './images/testimonial-2.jpg';
 import testimonial3Image from './images/testimonial-3.jpg';
+import elipseHero from './images/elipse-hero.png';
 
 export const icons = {
   addItemIcon,
@@ -114,4 +115,5 @@ export const images = {
   testimonial1Image,
   testimonial2Image,
   testimonial3Image,
+  elipseHero,
 };

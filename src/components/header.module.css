@@ -2,7 +2,7 @@
   display: flex;
   align-self: start;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; 
 }
 
 .searchBar {
@@ -41,7 +41,7 @@
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
   background: var(--color-gray-100);
   border: none;
-  width: 22.5rem;
+  width: 30rem;
 }
 
 .searchInput::placeholder {
@@ -55,7 +55,8 @@
 .contactInfo {
   display: flex;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 500;
+  color: black;
   align-items: center;
   gap: .25rem;
 }

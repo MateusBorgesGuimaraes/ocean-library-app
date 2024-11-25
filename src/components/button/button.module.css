@@ -1,0 +1,12 @@
+.button {
+  border-radius: 8px;
+  font-weight: 500;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  border: none;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.8;;
+}

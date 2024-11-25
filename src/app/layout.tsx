@@ -23,9 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} layout`}>
-        <Sidebar />
-        <Header />
-        {children}
+        <aside className="sidebar">
+          <Sidebar />
+        </aside>
+        <header className="header">
+          <Header />
+        </header>
+        <main className="main-content">{children}</main>
       </body>
     </html>
   );
