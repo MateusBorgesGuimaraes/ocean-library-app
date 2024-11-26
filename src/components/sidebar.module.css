@@ -3,6 +3,7 @@
   height: calc(100vh - 2.5rem);
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   border-radius: .75rem;
+  background: white;
   position: fixed;
 }
 
@@ -48,3 +49,57 @@
   color: #293241;
   cursor: pointer;
 }
+
+.sidebarHeader  {
+  display: none;
+}
+
+
+@media(width < 100rem) {
+  .sidebar {
+    width: 18.75rem;
+  }
+}
+
+@media(width < 62.5rem) {
+    .sidebar {
+      height: 100vh;
+    }
+
+    .sidebarHeader {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+    }
+    
+    .closeButton {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease;
+      border-radius: 50%;
+    }
+    
+    .closeButton:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebarHeader {
+      padding: 1rem;
+    }
+
+    .publicContent {
+      padding-top: 4rem;
+    }
+}
+
+

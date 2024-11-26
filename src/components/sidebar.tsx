@@ -3,9 +3,23 @@ import { icons } from '../../public/assets/assets';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export const Sidebar = () => {
+interface SidebarProps {
+  onClose?: () => void;
+}
+
+export const Sidebar = ({ onClose }: SidebarProps) => {
   return (
     <section className={`${styles.sidebar}`}>
+      <div className={`${styles.sidebarHeader}`}>
+        <button onClick={onClose} className={styles.closeButton}>
+          <Image
+            src={icons.closeIcon}
+            alt="Close sidebar"
+            width={24}
+            height={24}
+          />
+        </button>
+      </div>
       <div className={`${styles.publicContent}`}>
         <div className={`${styles.icon}`}>
           <Link href="/">

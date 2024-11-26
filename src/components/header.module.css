@@ -1,8 +1,11 @@
-.header {
+.headerMain {
   display: flex;
-  align-self: start;
+  align-self: flex-start;
   align-items: center;
+  gap: 1.25rem;
   justify-content: space-between; 
+  position: relative;
+  z-index: 1;
 }
 
 .searchBar {
@@ -12,7 +15,7 @@
   border: 1px solid transparent;
   transition: all .2s ease-in-out;
 }
-
+ 
 .searchBar:hover {
   border: 1px solid var(--color-gray-300);
   border-radius: 3.75rem;
@@ -41,7 +44,7 @@
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
   background: var(--color-gray-100);
   border: none;
-  width: 30rem;
+  width: 18.75rem;
 }
 
 .searchInput::placeholder {
@@ -63,8 +66,111 @@
 
 .dec {
   display: block;
-  width: 1rem;
-  height: 1rem;
+  min-width: 1rem;
+  min-height: 1rem;
   border-radius: 50%;
   background: var(--color-green);
+}
+
+@media(width < 100rem) {
+  .headerMain {
+    flex-direction: column-reverse;
+    justify-content: start;
+    gap: .75rem;
+    align-items: start;
+  }
+
+  .searchInput {
+    width: 30rem;
+  }
+}
+
+.menuButton {
+  display: none;
+}
+
+@media(width < 87.5rem) {
+  .contactInfo {
+    display: none;
+  }
+}
+
+@media(width >= 1000px) {
+  .sidebar {
+    display: none !important;
+  }
+
+  .menuButton {
+    display: none;
+  }
+}
+
+
+@media(width < 62.5rem) {
+  .header {
+    display: flex;
+    width: 100%;
+    position: relative;
+    justify-content: space-between;
+    align-items: end;
+  }
+
+  .menuButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--color-gray-500);
+    border-radius: .25rem;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+  }
+
+  .menuButton:hover {
+    background: var(--color-gray-400);
+  }
+}
+
+.sidebar {
+  opacity: 0;
+  transform: translateX(calc(-100% - 1.25rem));
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media(width < 87.5rem) {
+  .sidebar {
+    width: 18.75rem;
+  }
+}
+
+@media(width < 62.5rem) {
+  .sidebar {
+    display: block;
+  }
+}
+
+@media(width < 50rem) {
+  .header {
+    gap: .75rem;
+  }
+  .headerMain {
+    width: 100%;
+  }
+
+  .searchBar {
+    width: 100%;
+  }
+  .searchInput {
+    width: 100%;
+  }
 }

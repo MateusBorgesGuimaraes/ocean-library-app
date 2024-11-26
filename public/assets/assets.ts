@@ -43,6 +43,8 @@ import userIcon from './icons/user-icon.svg';
 import userLoanIcon from './icons/user-loan-icon.svg';
 import usersLoansIcon from './icons/users-loans-icon.svg';
 import usersRolesIcon from './icons/users-roles-icon.svg';
+import sidebarMenuIcon from './icons/sidebar-menu-icon.svg';
+import closeIcon from './icons/close-icon.svg';
 
 // IMAGES IMPORTS
 
@@ -74,6 +76,7 @@ export const icons = {
   expandIcon,
   eyeViewIcon,
   librariamIcon,
+  closeIcon,
   linkIcon,
   listItemsIcon,
   loansIcon,
@@ -102,6 +105,7 @@ export const icons = {
   userLoanIcon,
   usersLoansIcon,
   usersRolesIcon,
+  sidebarMenuIcon,
 };
 
 export const images = {
