@@ -45,4 +45,77 @@ p:nth-child(2) .dec {
 .eventsCards {
   display: flex;
   justify-content: space-between;
+  gap: 1.25rem;
+  overflow-x: auto;
+}
+
+@media(width < 81.25rem) {
+  .eventsCards {
+    width: 740px;
+  }
+}
+
+@media(width < 75rem) {
+  .eventsCards {
+    width: 40rem;
+  }
+}
+
+@media(width < 68.75rem) {
+  .eventsCards {
+    width: 33.75rem;
+  }
+}
+
+@media(width < 62.5rem) {
+  .eventsCards {
+    width: 100%;
+  }
+}
+
+@media(width < 58.75rem) {
+  .eventsContainer {
+    padding: 2rem 2rem;
+  }
+  .eventsCards {
+    width: 46.25rem;
+  }
+}
+
+@media(width < 52.5rem) {
+  .eventsContainer {
+    padding: 1rem 1rem;
+  }
+
+  .eventsCards {
+    width: 40rem;
+  }
+}
+
+@media(width < 43.75rem) {
+  .eventsCards {
+    width: 33.75rem;
+  }
+}
+
+@media(width < 37.5rem) {
+  .eventsCards {
+    width: 27.5rem;
+  }
+}
+
+@media(width < 31.25rem) {
+  .eventsHeader {
+    flex-direction: column;
+    align-items: start;
+  }
+  .eventsCards {
+    width: 21.25rem;
+  }
+}
+
+@media(width < 25rem) {
+  .eventsCards {
+    width: 15rem;
+  }
 }

@@ -23,3 +23,48 @@
 .content > p {
   font-weight: 500;
 }
+
+@media(width < 100rem) {
+  .heroContainer {
+    max-width: 100%;
+  }
+
+  .decImage img {
+    width: 18.75rem;
+    height: 18.75rem;
+  }
+}
+
+@media(width < 87.5rem) {
+  .heroContainer {
+    max-width: 100%;
+  }
+}
+
+/* @media(width < 81.25rem) {
+  .decImage {
+    display: none;
+  }
+} */
+
+@media(width < 62.5rem) {
+  .decImage {
+    display: block;
+  }
+}
+
+@media(width < 47.5rem) {
+  .heroContainer {
+    max-width: 100%;
+  }
+  .decImage {
+    display: none;
+  }
+}
+
+@media(width < 25rem) {
+  .buttons {
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+  }
+}

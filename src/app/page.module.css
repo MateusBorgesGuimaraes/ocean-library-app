@@ -4,3 +4,9 @@
   flex-direction: column;
   align-items: center;
 }
+
+@media(width < 87.5rem) {
+  .main {
+    align-items: start;
+  }
+}

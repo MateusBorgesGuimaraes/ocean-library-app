@@ -1,5 +1,7 @@
 .cardContainer {
+  flex-shrink: 0;
   width: 16.25rem;
+  min-width: 16.25rem;
   height: 18.75rem;
   border-radius: .375rem;
   background-size: cover;
@@ -47,4 +49,27 @@
   width: 1rem;
   height: 1rem;
   background: var(--color-green);
+}
+
+@media(width < 81.25rem) {
+  .cardContainer {
+    width: 13.75rem;
+    height: 16.75rem;
+  }
+  
+  .eventTitle {
+    width: max-content;
+  }
+  
+  .register {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    border-radius: .375rem;
+    font-size: 1rem;
+    color: white;
+    background: black;
+    font-weight: 600;
+    padding: .375rem 1.125rem;
+    cursor: pointer;
+  }
+  
 }
