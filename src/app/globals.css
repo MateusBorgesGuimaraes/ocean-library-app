@@ -54,6 +54,8 @@ button {
 .layout {
   padding: 1.25rem;
   display: grid;
+  max-width: 120rem;
+  margin: 0 auto;
   grid-template-columns: 400px 1fr 400px;
   column-gap: 1.25rem;
 }
@@ -70,6 +72,7 @@ button {
 .main-content {
   grid-column: 2;
   grid-row: 2;
+  max-width: 64.25rem;
 }
 @media(width < 100rem) {
   .layout {
@@ -115,5 +118,11 @@ button {
   .main-content {
     grid-column: 1;
     grid-row: 2;
+    }
+  }
+
+  @media(width < 37.5rem) {
+    h1 {
+      line-height:  1.2;
     }
   }

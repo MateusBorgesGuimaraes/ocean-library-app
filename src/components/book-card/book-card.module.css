@@ -1,0 +1,29 @@
+.bookCard {
+  display: flex;
+  width: 11.25rem;
+  height: 15.25rem;
+  background-size: cover;
+  background-position: center;
+  padding: .375rem;
+  background-repeat: no-repeat;
+  border-radius: .375rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  scroll-snap-align: start;
+  justify-self: center;
+}
+
+.bookCard:hover {
+  opacity: 0.8;
+}
+
+.bookCard > div {
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: .25rem;
+  width: 2rem;
+  height: 2rem;
+}

@@ -1,0 +1,81 @@
+.newAdditionsContainer {
+  padding-block: 1.25rem;
+  --width: 11.25rem;
+  --gap: 1.25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.newAdditionsTitle {
+  font-size: 2.5rem;
+  color: var(--color-primary-300);
+  font-weight: 600;
+  margin-bottom: .75rem;
+}
+
+.newAdditionsCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 11.25rem);
+  gap: var(--gap);
+  overflow-x: auto;
+  width: 100%;
+}
+
+
+@media(width < 75rem) {
+  .newAdditionsContainer {
+    width: 46.25rem;
+  }
+  .newAdditionsCards {
+    grid-auto-flow: column;
+    scroll-snap-type: x mandatory;
+  }
+}
+
+@media(width < 68.75rem) {
+  .newAdditionsContainer {
+    width: 40rem;
+  }
+}
+
+@media(width < 62.5rem) {
+  .newAdditionsContainer {
+    width: 53.75rem;
+  }
+}
+
+@media(width < 57.5rem) {
+  .newAdditionsContainer {
+    width: 47.5rem;
+  }
+}
+
+@media(width < 51.25rem) {
+  .newAdditionsContainer {
+    width: 41.25rem;
+  }
+}
+
+@media(width < 45rem) {
+  .newAdditionsContainer {
+    width: 35rem;
+  }
+}
+
+@media(width < 38.75rem) {
+  .newAdditionsContainer {
+    width: 28.75rem;
+  }
+}
+
+@media(width < 32.5rem) {
+  .newAdditionsContainer {
+    width: 22.5rem;
+  }
+}
+
+@media(width < 26.25rem) {
+  .newAdditionsContainer {
+    width: 16.25rem;
+  }
+}
