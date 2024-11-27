@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 import { Sidebar } from '@/components/sidebar';
 import { Header } from '@/components/header';
+import { BookPreview } from '@/components/book-preview/book-preview';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -30,6 +31,9 @@ export default function RootLayout({
           <Header />
         </header>
         <main className="main-content">{children}</main>
+        <div className="book-preview">
+          <BookPreview />
+        </div>
       </body>
     </html>
   );

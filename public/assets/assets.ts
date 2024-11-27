@@ -50,6 +50,7 @@ import closeIcon from './icons/close-icon.svg';
 
 import coverTest1Image from './images/cover-test1.jpg';
 import coverTest2Image from './images/cover-test2.jpg';
+import coverTest3Image from './images/cover-test3.jpg';
 import eventTest1Image from './images/event-test1.jpg';
 import eventTest2Image from './images/event-test2.jpg';
 import heroImage from './images/hero-image.jpg';
@@ -111,6 +112,7 @@ export const icons = {
 export const images = {
   coverTest1Image,
   coverTest2Image,
+  coverTest3Image,
   eventTest1Image,
   eventTest2Image,
   heroImage,

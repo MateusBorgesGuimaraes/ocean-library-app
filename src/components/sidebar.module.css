@@ -55,7 +55,7 @@
 }
 
 
-@media(width < 100rem) {
+@media(width < 112.5rem) {
   .sidebar {
     width: 18.75rem;
   }
