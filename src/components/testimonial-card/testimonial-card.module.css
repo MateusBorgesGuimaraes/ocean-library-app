@@ -1,0 +1,38 @@
+.testimonialCard {
+  width: 20rem;
+  padding: 1.25rem;
+  border-radius: .375rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: linear-gradient(180deg,#98C1D9 0%, #E0FBFC 100%);
+}
+
+.testimonialText {
+  display: flex;
+  flex-direction: column;
+  font-style: italic;
+  gap: 1rem;
+  font-size: .875rem;
+  color: var(--color-primary-300);
+}
+
+.aspasCloseIcon {
+  align-self: flex-end;
+}
+
+.testimonialUser {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: var(--color-primary-500);
+  gap: .75rem;
+}
+
+.testimonialUser img {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+  object-fit: cover;
+}

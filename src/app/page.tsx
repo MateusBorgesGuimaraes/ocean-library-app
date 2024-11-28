@@ -2,6 +2,7 @@ import { Hero } from '@/components/pages/main/hero/hero';
 import styles from './page.module.css';
 import { Events } from '@/components/pages/main/events/events';
 import { NewAdditions } from '@/components/pages/main/new-additions/new-additions';
+import { Testimonials } from '@/components/pages/main/testimonials/testimonials';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <Hero />
         <Events />
         <NewAdditions />
+        <Testimonials />
       </main>
     </div>
   );
