@@ -41,16 +41,15 @@
   }
 }
 
-/* @media(width < 81.25rem) {
-  .decImage {
-    display: none;
-  }
-} */
 
 @media(width < 62.5rem) {
   .decImage {
-    display: block;
+    display: none;
   }
+  .content {
+    max-width: 50rem;
+  }
+
 }
 
 @media(width < 47.5rem) {
@@ -65,6 +64,5 @@
 @media(width < 25rem) {
   .buttons {
     flex-direction: column;
-    /* flex-wrap: wrap; */
   }
 }

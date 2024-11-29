@@ -36,3 +36,27 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+@media(width < 72.5rem) {
+  .testimonialCard {
+    width: 17.5rem;
+  }
+  
+  .testimonialUser img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media(width < 27.5rem) {
+  .testimonialCard {
+    width: 17.5rem;
+    padding: .75rem;
+    gap: .75rem;
+  }
+  
+  .testimonialUser img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}

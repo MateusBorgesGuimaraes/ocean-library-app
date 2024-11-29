@@ -16,6 +16,7 @@
 .newAdditionsCards {
   display: grid;
   grid-template-columns: repeat(auto-fill, 11.25rem);
+  justify-content: space-between;
   gap: var(--gap);
   overflow-x: auto;
   width: 100%;
@@ -31,7 +32,7 @@
     scroll-snap-type: x mandatory;
   }
 }
-
+ 
 @media(width < 68.75rem) {
   .newAdditionsContainer {
     width: 40rem;

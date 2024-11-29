@@ -4,6 +4,7 @@ import './globals.css';
 import { Sidebar } from '@/components/sidebar';
 import { Header } from '@/components/header';
 import { BookPreview } from '@/components/book-preview/book-preview';
+import { Footer } from '@/components/footer/footer';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -33,6 +34,9 @@ export default function RootLayout({
         <main className="main-content">{children}</main>
         <div className="book-preview">
           <BookPreview />
+        </div>
+        <div className="footer">
+          <Footer />
         </div>
       </body>
     </html>
