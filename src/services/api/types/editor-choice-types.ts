@@ -1,10 +1,9 @@
 import { Book } from './book-types';
+import { LibraryEvent } from './event-types';
+import { News } from './news-types';
 
 export type EditorChoice = {
-  id: number;
-  isActive: boolean;
-  createdAt: string;
-  updatedAt: string;
-  displayOrder: number;
-  book: Book;
+  books: Book[];
+  news: News[];
+  events: LibraryEvent[];
 };

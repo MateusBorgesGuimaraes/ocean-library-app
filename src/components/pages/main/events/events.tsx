@@ -1,7 +1,12 @@
 import { EventCard } from '@/components/event-card/event-card';
 import styles from './events.module.css';
+import { LibraryEvent } from '@/services/api/types/event-types';
 
-export const Events = () => {
+type EventsProps = {
+  events: LibraryEvent[];
+};
+
+export const Events = ({ events }: EventsProps) => {
   return (
     <section className={styles.eventsContainer}>
       <div className={styles.eventsHeader}>
@@ -17,9 +22,9 @@ export const Events = () => {
       </div>
 
       <div className={styles.eventsCards}>
-        <EventCard />
-        <EventCard />
-        <EventCard />
+        {events.map((event) => (
+          <EventCard event={event} key={event.id} />
+        ))}
       </div>
     </section>
   );

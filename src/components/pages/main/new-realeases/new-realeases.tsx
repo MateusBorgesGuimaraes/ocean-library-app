@@ -3,22 +3,13 @@
 import { BookCard } from '@/components/book-card/book-card';
 import styles from './new-realeases.module.css';
 import React from 'react';
-import { editorChoiceService } from '@/services/api/editor-choice-service';
-import { EditorChoice } from '@/services/api/types/editor-choice-types';
+import { Book } from '@/services/api/types/book-types';
 
-export const NewRealeases = () => {
-  const [newRealeases, setNewRealeases] = React.useState<EditorChoice[]>();
+type NewRealeasesProps = {
+  book: Book[];
+};
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      const newRealeases = await editorChoiceService.getEditorChoiceBooks();
-      setNewRealeases(newRealeases);
-    };
-    fetchData();
-  }, []);
-
-  if (!newRealeases) return null;
-
+export const NewRealeases = ({ book }: NewRealeasesProps) => {
   return (
     <section className={styles.newRealeasesContainer}>
       <h1 className={styles.newRealeasesTitle}>New Realeases</h1>
@@ -31,8 +22,8 @@ export const NewRealeases = () => {
         Discover the latest arrivals at Ocean Library!
       </p>
       <div className={styles.newRealeasesCards}>
-        {newRealeases.map((release) => (
-          <BookCard key={release.book.id} book={release.book} />
+        {book.map((release) => (
+          <BookCard key={release.id} book={release} />
         ))}
       </div>
     </section>
