@@ -1,8 +1,24 @@
+'use client';
+
 import { BookCard } from '@/components/book-card/book-card';
 import styles from './new-realeases.module.css';
-import { images } from '../../../../../public/assets/assets';
+import React from 'react';
+import { editorChoiceService } from '@/services/api/editor-choice-service';
+import { EditorChoice } from '@/services/api/types/editor-choice-types';
 
 export const NewRealeases = () => {
+  const [newRealeases, setNewRealeases] = React.useState<EditorChoice[]>();
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const newRealeases = await editorChoiceService.getEditorChoiceBooks();
+      setNewRealeases(newRealeases);
+    };
+    fetchData();
+  }, []);
+
+  if (!newRealeases) return null;
+
   return (
     <section className={styles.newRealeasesContainer}>
       <h1 className={styles.newRealeasesTitle}>New Realeases</h1>
@@ -15,16 +31,9 @@ export const NewRealeases = () => {
         Discover the latest arrivals at Ocean Library!
       </p>
       <div className={styles.newRealeasesCards}>
-        <BookCard image={images.coverTest1Image} id={1} />
-        <BookCard image={images.coverTest2Image} id={2} />
-        <BookCard image={images.coverTest1Image} id={3} />
-        <BookCard image={images.coverTest2Image} id={4} />
-        <BookCard image={images.coverTest1Image} id={5} />
-        <BookCard image={images.coverTest2Image} id={6} />
-        <BookCard image={images.coverTest1Image} id={7} />
-        <BookCard image={images.coverTest2Image} id={8} />
-        <BookCard image={images.coverTest1Image} id={9} />
-        <BookCard image={images.coverTest2Image} id={10} />
+        {newRealeases.map((release) => (
+          <BookCard key={release.book.id} book={release.book} />
+        ))}
       </div>
     </section>
   );
