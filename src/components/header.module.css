@@ -132,6 +132,10 @@
   .menuButton:hover {
     background: var(--color-gray-400);
   }
+
+  .searchBar {
+    width: 300px;
+  }
 }
 
 .sidebar {
@@ -158,6 +162,16 @@
 @media(width < 62.5rem) {
   .sidebar {
     display: block;
+  }
+
+  .headerMain {
+    width: 100%;
+  }
+
+  .searchBar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; 
   }
 }
 

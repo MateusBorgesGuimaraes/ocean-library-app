@@ -11,6 +11,7 @@ import { News } from '@/services/api/types/news-types';
 import { LibraryEvent } from '@/services/api/types/event-types';
 import { Book } from '@/services/api/types/book-types';
 import { editorChoiceService } from '@/services/api/editor-choice-service';
+import { NewsEditor } from '@/components/pages/main/news-editor/news-editor';
 
 export default function Home() {
   const [news, setNews] = React.useState<News[]>([]);
@@ -37,6 +38,7 @@ export default function Home() {
         <Events events={events} />
         <NewAdditions />
         <Testimonials />
+        <NewsEditor news={news} />
         <NewRealeases book={books} />
       </main>
     </div>

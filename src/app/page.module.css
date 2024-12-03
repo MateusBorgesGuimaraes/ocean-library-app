@@ -6,6 +6,14 @@
 
 @media(width < 87.5rem) {
   .main {
+    margin: 0px;
+    padding: 0px;
     align-items: start;
+  }
+}
+
+@media(width < 62.5rem) {
+  .main {
+    max-width: 58.75rem;
   }
 }

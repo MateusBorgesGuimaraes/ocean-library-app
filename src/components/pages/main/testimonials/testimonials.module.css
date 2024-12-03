@@ -1,5 +1,7 @@
 .testimonialsContainer {
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .testimonialsContainer > h1 {
@@ -9,93 +11,100 @@
 }
 
 .testimonialsCards {
+  width: 62.5rem;
   display: grid;
-  justify-content: space-between;
-  grid-template-columns: repeat(auto-fill, 20rem);
+  grid-template-columns: repeat(3,320px);
   gap: 1.25rem;
-  overflow-x: auto; 
-  width: 100%;
+  overflow-x: auto;
 }
 
-@media(width < 87.5rem) {
-  .testimonialsContainer {
-    width: 60rem;
-  }
-
+@media(width < 85rem) {
   .testimonialsCards {
-    grid-auto-flow: column;
-    scroll-snap-type: x mandatory;
-    justify-content: initial;
-  }
-}
-
-@media(width < 82.5rem) {
-  .testimonialsContainer {
     width: 56.25rem;
   }
 }
 
-@media(width < 78.75rem) {
-  .testimonialsContainer {
+@media(width < 80.625rem) {
+  .testimonialsCards {
+    width: 52.5rem;
+  }
+}
+
+@media(width < 77.5rem) {
+  .testimonialsCards {
     width: 50rem;
   }
 }
 
-
 @media(width < 72.5rem) {
-  .testimonialsContainer {
-    width: 43.75rem;
-  }
-
   .testimonialsCards {
-    grid-template-columns: repeat(auto-fill, 17.5rem);
+    grid-template-columns: repeat(3,17.5rem);
+    width: 46.25rem;
   }
 }
 
-@media(width < 66.25rem) {
-  .testimonialsContainer {
+@media(width < 71.25rem) {
+  .testimonialsCards {
+    width: 42.5rem;
+  }
+}
+
+@media(width < 67.5rem) {
+  .testimonialsCards {
     width: 37.5rem;
   }
 }
 
 @media(width < 62.5rem) {
-  .testimonialsContainer {
-    width: 62.5rem;
+  .testimonialsCards {
+    width: 57.5rem;
+  }
+}
+
+@media(width < 59.375rem) {
+  .testimonialsCards {
+    width: 56.25rem;
   }
 }
 
 @media(width < 57.5rem) {
-  .testimonialsContainer {
-    width: 50rem;
+  .testimonialsCards {
+    width: 51.25rem;
   }
 }
 
-@media(width < 52.5rem) {
-  .testimonialsContainer {
-    width: 43.75rem;
+@media(width < 53.125rem) {
+  .testimonialsCards {
+    width: 45rem;
   }
 }
 
-@media(width < 46.25rem) {
-  .testimonialsContainer {
-    width: 37.5rem;
+@media(width < 46.875rem) {
+  .testimonialsCards {
+    width: 38.75rem;
   }
 }
 
-@media(width < 40rem) {
-  .testimonialsContainer {
-    width: 31.25rem;
+@media(width < 40.625rem) {
+  .testimonialsCards {
+    width: 32.5rem;
   }
 }
 
-@media(width < 33.75rem) {
-  .testimonialsContainer {
-    width: 25rem;
+@media(width < 34.375rem) {
+  .testimonialsCards {
+    width: 26.25rem;
   }
 }
 
-@media(width < 27.5rem) {
-  .testimonialsContainer {
+@media(width < 28.125rem) {
+  .testimonialsCards {
+    width: 20rem;
+  }
+}
+
+@media(width < 21.875rem) {
+  .testimonialsCards {
     width: 17.5rem;
   }
 }

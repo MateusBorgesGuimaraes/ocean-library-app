@@ -3,6 +3,7 @@ import styles from './book-card.module.css';
 import { icons } from '../../../public/assets/assets';
 import React from 'react';
 import { Book } from '@/services/api/types/book-types';
+import formatLink from '@/functions/formatLink';
 
 type BookCardProps = {
   book: Book;
@@ -13,7 +14,7 @@ export const BookCard = ({ book }: BookCardProps) => {
     <button
       className={styles.bookCard}
       style={{
-        backgroundImage: `url(${`http://localhost:3001/pictures/${book?.cover}`})`,
+        backgroundImage: `url(${formatLink(book?.cover, 'pictures')})`,
       }}
     >
       <div>
