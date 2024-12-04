@@ -1,13 +1,22 @@
+'use client';
+
 import styles from './sidebar.module.css';
 import { icons } from '../../public/assets/assets';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
+import { Modal } from './modal';
 
 interface SidebarProps {
   onClose?: () => void;
 }
 
 export const Sidebar = ({ onClose }: SidebarProps) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
   return (
     <section className={`${styles.sidebar}`}>
       <div className={`${styles.sidebarHeader}`}>
@@ -66,12 +75,12 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
             </li>
 
             <li className={`${styles.menuItem}`}>
-              <Link href="/signin">
+              <div onClick={openModal}>
                 <div className={`${styles.itemContainer}`}>
                   <Image src={icons.signInIcon} alt="sign in icon" />
                   sign in
                 </div>
-              </Link>
+              </div>
             </li>
 
             <li className={`${styles.menuItem}`}>
@@ -85,6 +94,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
           </ul>
         </div>
       </div>
+      {isOpen && <Modal setIsOpen={setIsOpen}> fsdfsdfsd</Modal>}
     </section>
   );
 };

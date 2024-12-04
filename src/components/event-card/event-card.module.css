@@ -1,7 +1,7 @@
 .cardContainer {
   flex-shrink: 0;
-  width: 16.25rem;
-  min-width: 16.25rem;
+  width: 18.5rem;
+  min-width: 18.5rem;
   height: 18.75rem;
   border-radius: .375rem;
   background-size: cover;
@@ -20,8 +20,6 @@
   background: rgba(0, 0, 0, 0.47);
   border-radius: .25rem;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6.8px);
-  -webkit-backdrop-filter: blur(6.8px);
   padding: .25rem;
 }
 

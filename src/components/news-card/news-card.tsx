@@ -11,7 +11,6 @@ type NewsCardProps = {
 };
 
 export const NewsCard = ({ news }: NewsCardProps) => {
-  console.log('link', formatLink(news?.coverImage, 'pictures'));
   return (
     <div className={styles.newsCard}>
       <div className={styles.newsImage}>

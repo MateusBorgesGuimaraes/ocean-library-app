@@ -45,6 +45,7 @@
 
 .menuItem {
   font-size: 1rem;
+  background: none;
   font-weight: 500;
   color: #293241;
   cursor: pointer;

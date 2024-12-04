@@ -3,17 +3,24 @@
 import React from 'react';
 import styles from './book-preview.module.css';
 import Image from 'next/image';
-import { icons, images } from '../../../public/assets/assets';
+import { icons } from '../../../public/assets/assets';
 import { Button } from '../button/button';
+import { useBookPreviewStore } from '@/store/book-preview-store';
+import formatLink from '@/functions/formatLink';
 
 export const BookPreview = () => {
-  const [isActive, setIsActive] = React.useState(true);
+  const [isActive, setIsActive] = React.useState(false);
+  const { removeBook, book } = useBookPreviewStore();
 
   const handleClose = () => {
     setIsActive(false);
+    removeBook();
   };
 
   React.useEffect(() => {
+    if (book) {
+      setIsActive(true);
+    }
     if (isActive) {
       document.body.classList.add('preview-active');
     } else {
@@ -23,11 +30,9 @@ export const BookPreview = () => {
     return () => {
       document.body.classList.remove('preview-active');
     };
-  }, [isActive]);
+  }, [isActive, book]);
 
-  if (!isActive) return null;
-
-  if (!isActive) return null;
+  if (!isActive || !book) return null;
   return (
     <div className={`${styles.previewContainer} ${styles.active}`}>
       <h1 className={styles.previewTitle}>Book Preview</h1>
@@ -39,32 +44,29 @@ export const BookPreview = () => {
             className={styles.closeIcon}
           />
         </div>
-        <h3 className={styles.bookTitle}>Winnie-the-Pooh</h3>
+        <h3 className={styles.bookTitle}>{book?.title}</h3>
         <div className={styles.bookCover}>
-          <Image src={images.coverTest3Image} alt="cover" />
+          <Image
+            width={180}
+            height={244}
+            src={formatLink(book?.cover, 'pictures')}
+            alt="cover"
+          />
         </div>
 
-        <p className={styles.author}>
-          written by A. A. Milne and illustrated by E. H. Shepard
-        </p>
+        <p className={styles.author}>written by {book?.author}</p>
 
         <p className={styles.date}>
-          first published in <b>1926</b>
+          first published in <b>{book?.year}</b>
         </p>
 
         <p className={styles.copies}>
-          copies available: <b>12</b>
+          copies available: <b>{book?.quantity}</b>
         </p>
 
         <div className={styles.description}>
           <h4>description</h4>
-          <p>
-            The book follows the adventures of Winnie the Pooh, a friendly and
-            slightly naïve bear, and his friends in the Hundred Acre Wood.
-            Characters include Piglet, Eeyore, Tigger, Kanga and Roo, Rabbit,
-            and Christopher Robin, the boy who often joins Pooh and friends in
-            their explorations.
-          </p>
+          <p>{book?.synopsis}</p>
         </div>
 
         <div className={styles.buttonContainer}>

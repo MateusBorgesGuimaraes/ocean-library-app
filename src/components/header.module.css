@@ -4,7 +4,7 @@
   align-items: center;
   gap: 1.25rem;
   justify-content: space-between; 
-  position: relative;
+  /* position: relative; */
   z-index: 1;
 }
 
@@ -133,8 +133,12 @@
     background: var(--color-gray-400);
   }
 
-  .searchBar {
-    width: 300px;
+  .headerMain {
+    max-width: 80%;
+  }
+
+  .searchInput {
+    width: 100%;
   }
 }
 
@@ -144,7 +148,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 50;
+  /* z-index: 1000; */
   transition: all 0.3s ease-in-out;
 }
 
