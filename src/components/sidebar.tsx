@@ -6,6 +6,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { Modal } from './modal';
+import { FormBox } from './form-components/form-box/form-box';
+import { LoginForm } from './forms/login-form/login-form';
+import { RegisterForm } from './forms/register-form/register-form';
 
 interface SidebarProps {
   onClose?: () => void;
@@ -13,8 +16,15 @@ interface SidebarProps {
 
 export const Sidebar = ({ onClose }: SidebarProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen2, setIsOpen2] = React.useState(false);
   const openModal = () => {
+    setIsOpen2(false);
     setIsOpen(true);
+  };
+
+  const openModal2 = () => {
+    setIsOpen(false);
+    setIsOpen2(true);
   };
 
   return (
@@ -84,17 +94,41 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
             </li>
 
             <li className={`${styles.menuItem}`}>
-              <Link href="/signup">
+              <div onClick={openModal2}>
                 <div className={`${styles.itemContainer}`}>
                   <Image src={icons.signUpIcon} alt="sign up icon" />
                   sign up
                 </div>
-              </Link>
+              </div>
             </li>
           </ul>
         </div>
       </div>
-      {isOpen && <Modal setIsOpen={setIsOpen}> fsdfsdfsd</Modal>}
+      {isOpen && (
+        <Modal setIsOpen={setIsOpen}>
+          <FormBox>
+            <FormBox.Header title="Welcome to the" image={icons.logoIcon} />
+            <FormBox.Subtitle text="Log in or register now to continue browsing" />
+            <FormBox.Content>
+              <LoginForm />
+            </FormBox.Content>
+            <FormBox.Footer text="Don't have an account?" strong="Register" />
+          </FormBox>
+        </Modal>
+      )}
+
+      {isOpen2 && (
+        <Modal setIsOpen={setIsOpen2}>
+          <FormBox>
+            <FormBox.Header title="Welcome to the" image={icons.logoIcon} />
+            <FormBox.Subtitle text="Log in or register now to continue browsing" />
+            <FormBox.Content>
+              <RegisterForm />
+            </FormBox.Content>
+            <FormBox.Footer text="Already have an account?" strong="Sign in" />
+          </FormBox>
+        </Modal>
+      )}
     </section>
   );
 };

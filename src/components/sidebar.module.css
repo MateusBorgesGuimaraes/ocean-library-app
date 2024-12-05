@@ -22,7 +22,7 @@
   gap: 1.5rem
 }
 
-.menuItem a img {
+.menuItem a img, .menuItem div img {
   width: 1.75rem;
   height: 1.75rem;
   padding: .15rem;
@@ -32,7 +32,7 @@
   transition: all .2s ease-in-out;
 }
 
-.menuItem a:hover img {
+.menuItem a:hover img, .menuItem div:hover img {
   background: var(--color-primary-100);
   border: 2px solid var(--color-primary-300);
 }

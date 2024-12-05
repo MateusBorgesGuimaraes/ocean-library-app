@@ -1,6 +1,16 @@
-export type Login = {
+export type LoginInfos = {
   email: string;
   password: string;
+};
+
+export type RegisterInfos = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export type Token = {
+  accessToken: string;
 };
 
 export enum RoutePolicies {

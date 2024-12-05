@@ -1,0 +1,12 @@
+.registerFormInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+@media(width < 37.5rem) {
+  .registerFormInputs {
+    gap: .875rem;
+  }
+}
