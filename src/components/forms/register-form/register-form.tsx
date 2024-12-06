@@ -7,16 +7,19 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { ErrorComponent } from '@/components/form-components/error-component/error-component';
 import { authService } from '@/services/api/auth-service';
+import { useUserStore } from '@/store/user-store';
 
 export const RegisterForm = () => {
+  const { setUser } = useUserStore();
   const methods = useForm<RegisterInfos>({
     resolver: zodResolver(registerSchema),
   });
 
   async function onSubmit(data: RegisterInfos) {
     const response = await authService.postRegisterData(data);
-
-    console.log(response);
+    if (response) {
+      setUser(response);
+    }
   }
 
   return (
@@ -40,7 +43,7 @@ export const RegisterForm = () => {
           </div>
 
           <div>
-            <Input label="Senha" type="password" name="password" />
+            <Input label="Password" type="password" name="password" />
             {methods.formState.errors.password && (
               <ErrorComponent
                 message={methods.formState.errors.password.message}

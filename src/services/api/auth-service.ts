@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie';
 import { apiClient } from './base-api-client';
-import { Token, LoginInfos, RegisterInfos } from './types/auth-types';
+import { LoginInfos, RegisterInfos, ReturnedUser } from './types/auth-types';
 
 export const authService = {
-  async postUserData({ email, password }: LoginInfos): Promise<Token[]> {
+  async postUserData({ email, password }: LoginInfos): Promise<ReturnedUser> {
     try {
       const response = await apiClient.post('/auth/login', {
         email,
@@ -21,7 +21,11 @@ export const authService = {
     }
   },
 
-  async postRegisterData({ name, email, password }: RegisterInfos) {
+  async postRegisterData({
+    name,
+    email,
+    password,
+  }: RegisterInfos): Promise<ReturnedUser> {
     try {
       const response = await apiClient.post('/users/register', {
         name,

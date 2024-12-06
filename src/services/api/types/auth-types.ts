@@ -9,7 +9,11 @@ export type RegisterInfos = {
   password: string;
 };
 
-export type Token = {
+export type ReturnedUser = {
+  id: number;
+  name: string;
+  email: string;
+  permitions: RoutePolicies[];
   accessToken: string;
 };
 

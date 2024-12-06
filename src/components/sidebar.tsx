@@ -9,6 +9,7 @@ import { Modal } from './modal';
 import { FormBox } from './form-components/form-box/form-box';
 import { LoginForm } from './forms/login-form/login-form';
 import { RegisterForm } from './forms/register-form/register-form';
+import { RequestForm } from './forms/request-form/request-form';
 
 interface SidebarProps {
   onClose?: () => void;
@@ -17,6 +18,7 @@ interface SidebarProps {
 export const Sidebar = ({ onClose }: SidebarProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpen2, setIsOpen2] = React.useState(false);
+  const [isOpen3, setIsOpen3] = React.useState(false);
   const openModal = () => {
     setIsOpen2(false);
     setIsOpen(true);
@@ -25,6 +27,11 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
   const openModal2 = () => {
     setIsOpen(false);
     setIsOpen2(true);
+  };
+
+  const openModal3 = () => {
+    setIsOpen2(false);
+    setIsOpen3(true);
   };
 
   return (
@@ -67,12 +74,12 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
             </li>
 
             <li className={`${styles.menuItem}`}>
-              <Link href="/request">
+              <div onClick={openModal3}>
                 <div className={`${styles.itemContainer}`}>
                   <Image src={icons.requestIcon} alt="request icon" />
                   request
                 </div>
-              </Link>
+              </div>
             </li>
 
             <li className={`${styles.menuItem}`}>
@@ -112,7 +119,12 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
             <FormBox.Content>
               <LoginForm />
             </FormBox.Content>
-            <FormBox.Footer text="Don't have an account?" strong="Register" />
+            <FormBox.Footer
+              closeState={setIsOpen}
+              openState={setIsOpen2}
+              text="Don't have an account?"
+              strong="Register"
+            />
           </FormBox>
         </Modal>
       )}
@@ -125,7 +137,24 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
             <FormBox.Content>
               <RegisterForm />
             </FormBox.Content>
-            <FormBox.Footer text="Already have an account?" strong="Sign in" />
+            <FormBox.Footer
+              closeState={setIsOpen2}
+              openState={setIsOpen}
+              text="Already have an account?"
+              strong="Sign in"
+            />
+          </FormBox>
+        </Modal>
+      )}
+
+      {isOpen3 && (
+        <Modal setIsOpen={setIsOpen2}>
+          <FormBox>
+            <FormBox.Header title="Request a book" />
+            <FormBox.Subtitle text="The books will not necessarily be added, we will evaluate the request and depending on demand it will be approved" />
+            <FormBox.Content>
+              <RequestForm />
+            </FormBox.Content>
           </FormBox>
         </Modal>
       )}

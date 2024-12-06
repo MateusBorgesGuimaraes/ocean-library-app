@@ -7,8 +7,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '@/components/zod-schemas/login-schema';
 import { ErrorComponent } from '@/components/form-components/error-component/error-component';
 import { authService } from '@/services/api/auth-service';
+import { useUserStore } from '@/store/user-store';
 
 export const LoginForm = () => {
+  const { setUser } = useUserStore();
   const methods = useForm<LoginInfos>({
     resolver: zodResolver(loginSchema),
   });
@@ -16,7 +18,9 @@ export const LoginForm = () => {
   async function onSubmit(data: LoginInfos) {
     const response = await authService.postUserData(data);
 
-    console.log(response);
+    if (response) {
+      setUser(response);
+    }
   }
 
   return (
@@ -32,7 +36,7 @@ export const LoginForm = () => {
             )}
           </div>
           <div>
-            <Input label="Senha" type="password" name="password" />
+            <Input label="Passoword" type="password" name="password" />
             {methods.formState.errors.password && (
               <ErrorComponent
                 message={methods.formState.errors.password.message}
