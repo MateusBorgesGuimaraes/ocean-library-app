@@ -3,10 +3,13 @@ export type RequestBook = {
   title: string;
   author: string;
   publisher: string;
-  year: number;
+  year: string;
   genre: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type CreatedRequest = Omit<RequestBook, 'createdAt' | 'updatedAt'>;
+export type CreatedRequest = Omit<
+  RequestBook,
+  'createdAt' | 'updatedAt' | 'id'
+>;

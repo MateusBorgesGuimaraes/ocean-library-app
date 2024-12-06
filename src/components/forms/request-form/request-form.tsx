@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ErrorComponent } from '@/components/form-components/error-component/error-component';
 import { CreatedRequest } from '@/services/api/types/request-types';
 import { requestSchema } from '@/components/zod-schemas/request-schema';
+import { requestService } from '@/services/api/request-service';
 
 export const RequestForm = () => {
   const methods = useForm<CreatedRequest>({
@@ -13,7 +14,8 @@ export const RequestForm = () => {
   });
 
   async function onSubmit(data: CreatedRequest) {
-    console.log(data);
+    const response = await requestService.postRequest(data);
+    console.log(response);
   }
 
   return (

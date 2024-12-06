@@ -148,7 +148,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
       )}
 
       {isOpen3 && (
-        <Modal setIsOpen={setIsOpen2}>
+        <Modal setIsOpen={setIsOpen3}>
           <FormBox>
             <FormBox.Header title="Request a book" />
             <FormBox.Subtitle text="The books will not necessarily be added, we will evaluate the request and depending on demand it will be approved" />
