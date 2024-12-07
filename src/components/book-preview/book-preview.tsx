@@ -4,9 +4,9 @@ import React from 'react';
 import styles from './book-preview.module.css';
 import Image from 'next/image';
 import { icons } from '../../../public/assets/assets';
-import { Button } from '../button/button';
 import { useBookPreviewStore } from '@/store/book-preview-store';
 import formatLink from '@/functions/formatLink';
+import Link from 'next/link';
 
 export const BookPreview = () => {
   const [isActive, setIsActive] = React.useState(false);
@@ -70,14 +70,13 @@ export const BookPreview = () => {
         </div>
 
         <div className={styles.buttonContainer}>
-          <Button
-            background="#EE6C4D"
-            color="#fff"
-            fontSize="1rem"
-            padding=".5rem 1.5rem"
+          <Link
+            href={`/book/${book?.id}`}
+            className={styles.button}
+            onClick={handleClose}
           >
             borrow
-          </Button>
+          </Link>
         </div>
       </div>
     </div>

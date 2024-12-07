@@ -1,6 +1,7 @@
 import formatLink from '@/functions/formatLink';
 import styles from './event-card.module.css';
 import { LibraryEvent } from '@/services/api/types/event-types';
+import Link from 'next/link';
 
 type EventCardProps = {
   event: LibraryEvent;
@@ -17,7 +18,9 @@ export const EventCard = ({ event }: EventCardProps) => {
       <p className={styles.eventTitle}>{event?.title}</p>
 
       <div className={styles.footerCard}>
-        <button className={styles.register}>participar</button>
+        <Link href={`/event/${event?.id}`} className={styles.register}>
+          participar
+        </Link>
 
         <span className={styles.dec}></span>
       </div>

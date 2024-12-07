@@ -1,0 +1,9 @@
+.titleHeader {
+  width: 100%;
+  font-size: 2.5rem;
+  color: var(--color-secondary-100);
+  font-weight: 600;
+  padding-top: 1.25rem;
+  padding-bottom: .75rem;
+  border-bottom: 2px solid var(--color-gray-200);
+}

@@ -6,4 +6,9 @@ export const booksService = {
     const response = await apiClient.get('/books/latest');
     return response.data;
   },
+
+  async getBookById(id: string): Promise<Book> {
+    const response = await apiClient.get(`/books/${id}`);
+    return response.data;
+  },
 };

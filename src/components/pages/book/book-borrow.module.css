@@ -1,0 +1,85 @@
+.bookPageContainer {
+  padding-top: 1.25rem;
+  color: var(--color-primary-500);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  min-height: calc(100vh - 2.5rem);
+}
+
+.bookInfos {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.bookInfos1 {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.bookCover img{
+  width: 15rem;
+  height: 21.5625rem;
+  border-radius: .375rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.bookTextsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.bookTitle {
+  font-size: 2rem;
+  color: var(--color-secondary-100);
+  font-weight: 600;
+}
+
+.bookTexts {
+  justify-self: center;
+  justify-content: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.copies {
+  font-weight: 600;
+}
+
+.year > span, .author > span, .publisher > span {
+  font-weight: 600;
+  color: var(--color-primary-400);
+}
+.bookActions {
+  align-self: flex-start;
+}
+
+.bookWarnings > ul {
+  color: var(--color-gray-500);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bookWarnings > ul > li {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+}
+
+@media(width < 37.5rem) {
+  .bookCover {
+    align-self: center;
+  }
+  .bookInfos1 {
+    display: flex;
+    flex-direction: column;
+  }
+  .bookTexts {
+    gap: .875rem;
+  }
+}

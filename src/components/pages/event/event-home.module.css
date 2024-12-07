@@ -1,0 +1,50 @@
+.eventHomeContainer {
+  min-height: calc(100vh - 2.5rem);
+}
+
+.eventContainer {
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.eventTitle {
+  font-size: 2rem;
+  color: var(--color-primary-500);
+}
+
+.eventImage img {
+  width: 100%;
+  height: 25rem;
+  border-radius: .75rem;
+  object-fit:cover;
+}
+
+.eventInfos {
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.eventInfos p {
+  font-weight: 600;
+  color: var(--color-primary-500);
+}
+
+.eventInfos p span {
+  color: var(--color-secondary-100);
+}
+
+.eventCol1 {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+@media(width < 25rem) {
+  .eventInfos {
+    flex-direction: column;
+  }
+}
