@@ -24,7 +24,7 @@ export const NewsCard = ({ news }: NewsCardProps) => {
       <h3 className={styles.newsTitle}>{news?.title}</h3>
       <p className={styles.newsText}>{cutText(news?.content, 200)}</p>
       <div className={styles.newsFooter}>
-        <Link href="/news">ver mais</Link>
+        <Link href={`news/${news.id}`}>ver mais</Link>
         <span>{formatDate(news?.createdAt)}</span>
       </div>
     </div>

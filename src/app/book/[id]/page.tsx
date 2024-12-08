@@ -1,12 +1,13 @@
 import { BookBorrow } from '@/components/pages/book/book-borrow';
 
 type Params = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export default function BookPage({ params }: Params) {
+export default async function BookPage(props: Params) {
+  const params = await props.params;
   return (
     <section>
       <BookBorrow id={params.id} />
