@@ -26,8 +26,6 @@ export const BookBorrow = ({ id }: BookProps) => {
 
   if (!book) return null;
 
-  console.log('link', formatLink(book.cover, 'pictures'));
-
   return (
     <div className={styles.bookPageContainer}>
       <div className={styles.bookInfos}>

@@ -14,6 +14,23 @@ export type Book = {
   updatedAt: string;
 };
 
+export type BookSearchResult = {
+  data: BookSearchItem[];
+  meta: SearchMeta;
+};
+
+export type BookSearchItem = {
+  id: number;
+  title: string;
+};
+
+export type SearchMeta = {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+};
+
 export type CreatedBook = Omit<
   Book,
   'id' | 'createdAt' | 'updatedAt' | 'availability'

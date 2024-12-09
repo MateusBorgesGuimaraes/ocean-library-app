@@ -5,12 +5,26 @@ import styles from './header.module.css';
 import { icons } from '../../public/assets/assets';
 import React from 'react';
 import { Sidebar } from './sidebar';
+import { SearchBox } from './search-box/search-box';
+import { BookSearchResult } from '@/services/api/types/book-types';
+import { booksService } from '@/services/api/books-service';
+import { useSearch } from '@/hooks/use-search';
+import { ErrorComponent } from './form-components/error-component/error-component';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [windowWidth, setWindowWidth] = React.useState(0);
-
+  const {
+    searchValue,
+    searchResults,
+    error,
+    isSearchOpen,
+    handleSearchChange,
+    clearSearch,
+  } = useSearch<BookSearchResult>({
+    searchFn: (query) => booksService.getSimpleBooksByTitle(query),
+  });
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -41,13 +55,19 @@ export const Header = () => {
             <Image src={icons.searchIcon} alt="search icon" />
           </button>
           <input
+            value={searchValue}
+            onChange={handleSearchChange}
             className={styles.searchInput}
             type="text"
             placeholder="search"
           />
           <button className={styles.advancedButton}>
-            <Image src={icons.advandedIcon} alt="advanded search" />
+            <Image src={icons.advandedIcon} alt="advanced search" />
           </button>
+          {isSearchOpen && (
+            <SearchBox data={searchResults?.data} clearSearch={clearSearch} />
+          )}
+          {error && <ErrorComponent message={error} />}
         </div>
 
         <div className={styles.contactInfo}>
