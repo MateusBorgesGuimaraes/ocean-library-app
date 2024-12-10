@@ -10,6 +10,7 @@ import { FormBox } from './form-components/form-box/form-box';
 import { LoginForm } from './forms/login-form/login-form';
 import { RegisterForm } from './forms/register-form/register-form';
 import { RequestForm } from './forms/request-form/request-form';
+import { AccordionLinks } from './accordion-links/accordion-links';
 
 interface SidebarProps {
   onClose?: () => void;
@@ -158,6 +159,54 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
           </FormBox>
         </Modal>
       )}
+      <div className={styles.privateContent}>
+        <div className={styles.accordionContainer}>
+          <div className={styles.accordionList}>
+            <AccordionLinks
+              mainItem={{ title: 'Librarian', icon: icons.librariamIcon }}
+              subItems={[
+                { title: 'user loans', icon: icons.usersLoansIcon, link: '/' },
+                { title: 'user loan', icon: icons.userLoanIcon, link: '/' },
+                { title: 'make loan', icon: icons.makeLoanIcon, link: '/' },
+                { title: 'user request', icon: icons.requestIcon, link: '/' },
+              ]}
+            />
+            <AccordionLinks
+              mainItem={{ title: 'Social media', icon: icons.socialMediaIcon }}
+              subItems={[
+                { title: 'news', icon: icons.socialMediaNewsIcon, link: '/' },
+                {
+                  title: 'events',
+                  icon: icons.socialMediaEventsIcon,
+                  link: '/',
+                },
+              ]}
+            />
+            <AccordionLinks
+              mainItem={{
+                title: 'Stock manager',
+                icon: icons.stockManagerIcon,
+              }}
+              subItems={[
+                { title: 'book', icon: icons.bookIcon, link: '/' },
+                { title: 'categories', icon: icons.caregoriesIcon, link: '/' },
+              ]}
+            />
+            <AccordionLinks
+              mainItem={{ title: 'Admin', icon: icons.adminIcon }}
+              subItems={[
+                { title: 'users roles', icon: icons.usersRolesIcon, link: '/' },
+              ]}
+            />
+          </div>
+        </div>
+        <div className={styles.logoutContainer}>
+          <button className={styles.logoutButton}>
+            <Image src={icons.logoutIcon} alt="loans icon" />
+            logout
+          </button>
+        </div>
+      </div>
     </section>
   );
 };

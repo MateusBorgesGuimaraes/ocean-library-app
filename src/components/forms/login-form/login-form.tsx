@@ -36,7 +36,7 @@ export const LoginForm = () => {
             )}
           </div>
           <div>
-            <Input label="Passoword" type="password" name="password" />
+            <Input label="Password" type="password" name="password" />
             {methods.formState.errors.password && (
               <ErrorComponent
                 message={methods.formState.errors.password.message}
