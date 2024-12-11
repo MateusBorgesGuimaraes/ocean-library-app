@@ -11,15 +11,20 @@ import { LoginForm } from './forms/login-form/login-form';
 import { RegisterForm } from './forms/register-form/register-form';
 import { RequestForm } from './forms/request-form/request-form';
 import { AccordionLinks } from './accordion-links/accordion-links';
+import { useUserStore } from '@/store/user-store';
+import { authService } from '@/services/api/auth-service';
+import { RoutePolicies } from '@/services/api/types/auth-types';
 
 interface SidebarProps {
   onClose?: () => void;
 }
 
 export const Sidebar = ({ onClose }: SidebarProps) => {
+  const { user, removeUser } = useUserStore();
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpen2, setIsOpen2] = React.useState(false);
   const [isOpen3, setIsOpen3] = React.useState(false);
+
   const openModal = () => {
     setIsOpen2(false);
     setIsOpen(true);
@@ -33,6 +38,11 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
   const openModal3 = () => {
     setIsOpen2(false);
     setIsOpen3(true);
+  };
+
+  const logout = () => {
+    removeUser();
+    authService.removeToken();
   };
 
   return (
@@ -74,14 +84,16 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
               </Link>
             </li>
 
-            <li className={`${styles.menuItem}`}>
-              <div onClick={openModal3}>
-                <div className={`${styles.itemContainer}`}>
-                  <Image src={icons.requestIcon} alt="request icon" />
-                  request
+            {user && (
+              <li className={`${styles.menuItem}`}>
+                <div onClick={openModal3}>
+                  <div className={`${styles.itemContainer}`}>
+                    <Image src={icons.requestIcon} alt="request icon" />
+                    request
+                  </div>
                 </div>
-              </div>
-            </li>
+              </li>
+            )}
 
             <li className={`${styles.menuItem}`}>
               <Link href="/loans">
@@ -92,23 +104,27 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
               </Link>
             </li>
 
-            <li className={`${styles.menuItem}`}>
-              <div onClick={openModal}>
-                <div className={`${styles.itemContainer}`}>
-                  <Image src={icons.signInIcon} alt="sign in icon" />
-                  sign in
-                </div>
-              </div>
-            </li>
+            {!user && (
+              <>
+                <li className={`${styles.menuItem}`}>
+                  <div onClick={openModal}>
+                    <div className={`${styles.itemContainer}`}>
+                      <Image src={icons.signInIcon} alt="sign in icon" />
+                      sign in
+                    </div>
+                  </div>
+                </li>
 
-            <li className={`${styles.menuItem}`}>
-              <div onClick={openModal2}>
-                <div className={`${styles.itemContainer}`}>
-                  <Image src={icons.signUpIcon} alt="sign up icon" />
-                  sign up
-                </div>
-              </div>
-            </li>
+                <li className={`${styles.menuItem}`}>
+                  <div onClick={openModal2}>
+                    <div className={`${styles.itemContainer}`}>
+                      <Image src={icons.signUpIcon} alt="sign up icon" />
+                      sign up
+                    </div>
+                  </div>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
@@ -159,54 +175,101 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
           </FormBox>
         </Modal>
       )}
-      <div className={styles.privateContent}>
-        <div className={styles.accordionContainer}>
-          <div className={styles.accordionList}>
-            <AccordionLinks
-              mainItem={{ title: 'Librarian', icon: icons.librariamIcon }}
-              subItems={[
-                { title: 'user loans', icon: icons.usersLoansIcon, link: '/' },
-                { title: 'user loan', icon: icons.userLoanIcon, link: '/' },
-                { title: 'make loan', icon: icons.makeLoanIcon, link: '/' },
-                { title: 'user request', icon: icons.requestIcon, link: '/' },
-              ]}
-            />
-            <AccordionLinks
-              mainItem={{ title: 'Social media', icon: icons.socialMediaIcon }}
-              subItems={[
-                { title: 'news', icon: icons.socialMediaNewsIcon, link: '/' },
-                {
-                  title: 'events',
-                  icon: icons.socialMediaEventsIcon,
-                  link: '/',
-                },
-              ]}
-            />
-            <AccordionLinks
-              mainItem={{
-                title: 'Stock manager',
-                icon: icons.stockManagerIcon,
-              }}
-              subItems={[
-                { title: 'book', icon: icons.bookIcon, link: '/' },
-                { title: 'categories', icon: icons.caregoriesIcon, link: '/' },
-              ]}
-            />
-            <AccordionLinks
-              mainItem={{ title: 'Admin', icon: icons.adminIcon }}
-              subItems={[
-                { title: 'users roles', icon: icons.usersRolesIcon, link: '/' },
-              ]}
-            />
+      {user && (
+        <div className={styles.privateContent}>
+          <div className={styles.accordionContainer}>
+            <div className={styles.accordionList}>
+              {(user.permissions.includes(RoutePolicies.admin) ||
+                user.permissions.includes(RoutePolicies.librarian)) && (
+                <AccordionLinks
+                  mainItem={{ title: 'Librarian', icon: icons.librariamIcon }}
+                  subItems={[
+                    {
+                      title: 'user loans',
+                      icon: icons.usersLoansIcon,
+                      link: '/',
+                    },
+                    {
+                      title: 'user loan',
+                      icon: icons.userLoanIcon,
+                      link: '/',
+                    },
+                    {
+                      title: 'make loan',
+                      icon: icons.makeLoanIcon,
+                      link: '/',
+                    },
+                    {
+                      title: 'user request',
+                      icon: icons.requestIcon,
+                      link: '/',
+                    },
+                  ]}
+                />
+              )}
+
+              {(user.permissions.includes(RoutePolicies.admin) ||
+                user.permissions.includes(RoutePolicies.socialMedia)) && (
+                <AccordionLinks
+                  mainItem={{
+                    title: 'Social media',
+                    icon: icons.socialMediaIcon,
+                  }}
+                  subItems={[
+                    {
+                      title: 'news',
+                      icon: icons.socialMediaNewsIcon,
+                      link: '/',
+                    },
+                    {
+                      title: 'events',
+                      icon: icons.socialMediaEventsIcon,
+                      link: '/',
+                    },
+                  ]}
+                />
+              )}
+
+              {(user.permissions.includes(RoutePolicies.admin) ||
+                user.permissions.includes(RoutePolicies.stockController)) && (
+                <AccordionLinks
+                  mainItem={{
+                    title: 'Stock manager',
+                    icon: icons.stockManagerIcon,
+                  }}
+                  subItems={[
+                    { title: 'book', icon: icons.bookIcon, link: '/' },
+                    {
+                      title: 'categories',
+                      icon: icons.caregoriesIcon,
+                      link: '/',
+                    },
+                  ]}
+                />
+              )}
+
+              {user.permissions.includes(RoutePolicies.admin) && (
+                <AccordionLinks
+                  mainItem={{ title: 'Admin', icon: icons.adminIcon }}
+                  subItems={[
+                    {
+                      title: 'users roles',
+                      icon: icons.usersRolesIcon,
+                      link: '/',
+                    },
+                  ]}
+                />
+              )}
+            </div>
+          </div>
+          <div className={styles.logoutContainer}>
+            <button className={styles.logoutButton} onClick={logout}>
+              <Image src={icons.logoutIcon} alt="loans icon" />
+              logout
+            </button>
           </div>
         </div>
-        <div className={styles.logoutContainer}>
-          <button className={styles.logoutButton}>
-            <Image src={icons.logoutIcon} alt="loans icon" />
-            logout
-          </button>
-        </div>
-      </div>
+      )}
     </section>
   );
 };

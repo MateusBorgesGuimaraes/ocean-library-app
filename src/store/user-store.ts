@@ -5,7 +5,7 @@ export type SimpleUser = {
   id: number;
   name: string;
   email: string;
-  permitions: RoutePolicies[];
+  permissions: RoutePolicies[];
 };
 
 type UserStore = {

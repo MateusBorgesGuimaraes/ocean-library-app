@@ -13,7 +13,7 @@ export type ReturnedUser = {
   id: number;
   name: string;
   email: string;
-  permitions: RoutePolicies[];
+  permissions: RoutePolicies[];
   accessToken: string;
 };
 
