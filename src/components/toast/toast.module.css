@@ -1,0 +1,12 @@
+.toast {
+  background: gray;
+}
+.success {
+ color: green;
+}
+.error {
+  color: red;
+}
+.info {
+  color: blue;
+}

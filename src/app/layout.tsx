@@ -5,6 +5,7 @@ import { Sidebar } from '@/components/sidebar';
 import { Header } from '@/components/header';
 import { BookPreview } from '@/components/book-preview/book-preview';
 import { Footer } from '@/components/footer/footer';
+import { ToastContainer } from '@/components/toast/toast-container';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} layout`}>
+        <ToastContainer />
         <aside className="sidebar">
           <Sidebar />
         </aside>

@@ -72,8 +72,7 @@ export const loanService = {
       const response = await apiClient.get(`/loans/user/${userId}`);
       return response.data;
     } catch (error) {
-      console.error('Loan failed:', error);
-      throw error;
+      return error;
     }
   },
 

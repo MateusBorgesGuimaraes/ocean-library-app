@@ -8,9 +8,12 @@ import { loginSchema } from '@/components/zod-schemas/login-schema';
 import { ErrorComponent } from '@/components/form-components/error-component/error-component';
 import { authService } from '@/services/api/auth-service';
 import { useUserStore } from '@/store/user-store';
+import { useUserLoansStore } from '@/store/user-loans-store';
+import { loanService } from '@/services/api/loans-service';
 
 export const LoginForm = () => {
   const { setUser } = useUserStore();
+  const { setUserLoans } = useUserLoansStore();
   const methods = useForm<LoginInfos>({
     resolver: zodResolver(loginSchema),
   });
@@ -21,6 +24,13 @@ export const LoginForm = () => {
     if (response) {
       setUser(response);
     }
+
+    const loans = await loanService.getUserLoans(String(response.id));
+
+    if (loans.status === 404) {
+      return;
+    }
+    setUserLoans(loans);
   }
 
   return (

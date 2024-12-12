@@ -8,6 +8,7 @@ import React from 'react';
 import { Book } from '@/services/api/types/book-types';
 import { booksService } from '@/services/api/books-service';
 import formatLink from '@/functions/formatLink';
+import { useToastStore } from '@/store/toast-store';
 
 type BookProps = {
   id: string;
@@ -15,6 +16,16 @@ type BookProps = {
 
 export const BookBorrow = ({ id }: BookProps) => {
   const [book, setBook] = React.useState<Book>();
+  const addToast = useToastStore((state) => state.addToast);
+
+  const handleSuccess = () => {
+    addToast({
+      title: 'Sucesso!',
+      message: 'A operação foi realizada com sucesso.',
+      type: 'success',
+      duration: 3000,
+    });
+  };
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -63,6 +74,7 @@ export const BookBorrow = ({ id }: BookProps) => {
       <div className={styles.bookActions}>
         <div className={styles.bookButtons}>
           <Button
+            onClick={handleSuccess}
             color="#fff"
             background="#EE6C4D"
             padding=".5rem 1.125rem"

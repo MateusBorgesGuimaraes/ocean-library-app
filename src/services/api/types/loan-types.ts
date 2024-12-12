@@ -1,4 +1,4 @@
-import { Book } from './book-types';
+import { Book, SearchMeta } from './book-types';
 import { User } from './user-types';
 
 export enum LoanStatus {
@@ -10,16 +10,23 @@ export enum LoanStatus {
   OVERDUE = 'overdue',
 }
 
+type SimpleUser = Pick<User, 'id' | 'name' | 'email'>;
+type SimpleBook = Pick<Book, 'id' | 'title' | 'author'>;
+
 export type Loan = {
   id: number;
-  book: Book;
-  user: User;
+  book: SimpleBook;
+  user: SimpleUser;
   status: LoanStatus;
   requestDate: string;
-  pickupDate: string;
-  dueDate: string;
-  returnedDate: string;
-  renewalCount: number;
-  createdAt: string;
-  updatedAt: string;
+  pickupDate: string | null;
+  dueDate: string | null;
+  returnedDate: string | null;
+  renewalCount: number | null;
+  // createdAt: string;
+};
+
+export type LoanSearchResult = {
+  data: Loan[];
+  meta: SearchMeta;
 };

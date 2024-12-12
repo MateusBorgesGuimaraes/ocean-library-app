@@ -1,6 +1,6 @@
 import styles from './button.module.css';
 
-type ButtonProps = {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
   background: string;
   color: string;
@@ -14,6 +14,7 @@ export const Button = ({
   fontSize,
   padding,
   children,
+  ...rest
 }: ButtonProps) => {
   return (
     <button
@@ -24,6 +25,7 @@ export const Button = ({
         fontSize: `${fontSize}`,
         padding: `${padding}`,
       }}
+      {...rest}
     >
       {children}
     </button>

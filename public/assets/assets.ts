@@ -1,6 +1,7 @@
 // ICONS IMPORTS
 
 import accordionIcon from './icons/accordion-icon.svg';
+import circleCloseIcon from './icons/circle-close-icon.svg';
 import logoutIcon from './icons/logout-icon.svg';
 import addItemIcon from './icons/add-item-icon.svg';
 import adminIcon from './icons/admin-icon.svg';
@@ -64,6 +65,7 @@ import testimonial3Image from './images/testimonial-3.jpg';
 import elipseHero from './images/elipse-hero.png';
 
 export const icons = {
+  circleCloseIcon,
   accordionIcon,
   logoutIcon,
   addItemIcon,

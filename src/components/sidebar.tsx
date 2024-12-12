@@ -14,6 +14,7 @@ import { AccordionLinks } from './accordion-links/accordion-links';
 import { useUserStore } from '@/store/user-store';
 import { authService } from '@/services/api/auth-service';
 import { RoutePolicies } from '@/services/api/types/auth-types';
+import { useUserLoansStore } from '@/store/user-loans-store';
 
 interface SidebarProps {
   onClose?: () => void;
@@ -21,6 +22,7 @@ interface SidebarProps {
 
 export const Sidebar = ({ onClose }: SidebarProps) => {
   const { user, removeUser } = useUserStore();
+  const { removeUserLoans } = useUserLoansStore();
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpen2, setIsOpen2] = React.useState(false);
   const [isOpen3, setIsOpen3] = React.useState(false);
@@ -43,6 +45,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
   const logout = () => {
     removeUser();
     authService.removeToken();
+    removeUserLoans();
   };
 
   return (
