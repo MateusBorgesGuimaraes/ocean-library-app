@@ -10,6 +10,11 @@ export enum LoanStatus {
   OVERDUE = 'overdue',
 }
 
+export type ForbiddenRenew = Omit<
+  LoanStatus,
+  'pending' | 'overdue' | 'returned' | 'cancelled'
+>;
+
 type SimpleUser = Pick<User, 'id' | 'name' | 'email'>;
 type SimpleBook = Pick<Book, 'id' | 'title' | 'author'>;
 

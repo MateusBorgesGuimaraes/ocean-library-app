@@ -56,6 +56,7 @@
 }
 .bookActions {
   align-self: flex-start;
+  width: 100%;
 }
 
 .bookWarnings > ul {
@@ -69,6 +70,28 @@
   display: flex;
   gap: .75rem;
   align-items: center;
+}
+
+.bookActionsInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.bookActionsButtons {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.bookStatus, .bookDate {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.bookStatus > span, .bookDate > span {
+  color: var(--color-primary-400);
 }
 
 @media(width < 37.5rem) {

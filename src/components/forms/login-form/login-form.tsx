@@ -10,28 +10,59 @@ import { authService } from '@/services/api/auth-service';
 import { useUserStore } from '@/store/user-store';
 import { useUserLoansStore } from '@/store/user-loans-store';
 import { loanService } from '@/services/api/loans-service';
+import { useToastStore } from '@/store/toast-store';
+import { ApiError } from 'next/dist/server/api-utils';
 
 export const LoginForm = () => {
   const { setUser } = useUserStore();
-  const { setUserLoans } = useUserLoansStore();
+  const { setUserLoans, userLoans } = useUserLoansStore();
+  const addToast = useToastStore((state) => state.addToast);
+
   const methods = useForm<LoginInfos>({
     resolver: zodResolver(loginSchema),
   });
 
   async function onSubmit(data: LoginInfos) {
-    const response = await authService.postUserData(data);
+    try {
+      const response = await authService.postUserData(data);
 
-    if (response) {
-      setUser(response);
+      if (response) {
+        setUser(response);
+        addToast({
+          title: 'Login successful!',
+          message: 'You are now logged in.',
+          type: 'success',
+          duration: 5000,
+        });
+
+        const loans = await loanService.getUserLoans(String(response.id));
+
+        if (loans.status === 404) {
+          return;
+        }
+
+        setUserLoans(loans);
+      }
+    } catch (error) {
+      if (error instanceof ApiError) {
+        addToast({
+          title: 'Erro!',
+          message: error.message,
+          type: 'error',
+          duration: 5000,
+        });
+      } else {
+        addToast({
+          title: 'Erro!',
+          message: 'An unexpected error occurred',
+          type: 'error',
+          duration: 5000,
+        });
+      }
     }
-
-    const loans = await loanService.getUserLoans(String(response.id));
-
-    if (loans.status === 404) {
-      return;
-    }
-    setUserLoans(loans);
   }
+
+  console.log('userLoans', userLoans);
 
   return (
     <FormProvider {...methods}>

@@ -17,28 +17,48 @@ export const Toast = ({
   title,
   message,
   type = 'info',
-  duration = 3000,
+  duration = 5000,
   onClose,
 }: ToastProps) => {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const [isExiting, setIsExiting] = React.useState(false);
+
   React.useEffect(() => {
+    setIsVisible(true);
     const timer = setTimeout(() => {
-      onClose();
+      setIsExiting(true);
     }, duration);
 
-    return () => clearTimeout(timer);
-  }, [onClose, duration]);
+    const exitTimer = setTimeout(() => {
+      onClose();
+    }, duration + 300);
 
-  const toastStyles = `${styles.toast} ${styles[type]}`;
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(exitTimer);
+    };
+  }, [duration, onClose]);
 
-  console.log(toastStyles);
+  const toastStyles = `
+    ${styles.toast} 
+    ${styles[type]} 
+    ${isVisible ? styles.toastEnter : ''} 
+    ${isExiting ? styles.toastExit : ''}
+  `;
 
   return (
     <div className={toastStyles}>
-      <button onClick={onClose}>
+      <button
+        className={styles.closeButton}
+        onClick={() => {
+          setIsExiting(true);
+          setTimeout(onClose, 300);
+        }}
+      >
         <Image src={icons.circleCloseIcon} alt="close icon" />
       </button>
-      <h3>{title}</h3>
-      <p>{message}</p>
+      <h3 className={styles.toastTitle}>{title}</h3>
+      <p className={styles.toastMessage}>{message}</p>
     </div>
   );
 };

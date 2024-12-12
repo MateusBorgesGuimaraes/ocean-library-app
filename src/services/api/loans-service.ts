@@ -1,7 +1,10 @@
+import axios from 'axios';
 import { apiClient } from './base-api-client';
+import { Loan } from './types/loan-types';
+import { ApiError } from './utils/api-error';
 
 export const loanService = {
-  async createLoan(userId: string, bookId: string) {
+  async createLoan(userId: string, bookId: string): Promise<Loan | null> {
     try {
       const response = await apiClient.post(`/loans`, {
         userId,
@@ -10,8 +13,11 @@ export const loanService = {
 
       return response.data;
     } catch (error) {
-      console.error('Loan failed:', error);
-      throw error;
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      console.error('Unexpected error in createLoan:', error);
+      return null;
     }
   },
 

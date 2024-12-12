@@ -9,6 +9,12 @@ import { Book } from '@/services/api/types/book-types';
 import { booksService } from '@/services/api/books-service';
 import formatLink from '@/functions/formatLink';
 import { useToastStore } from '@/store/toast-store';
+import { useUserStore } from '@/store/user-store';
+import { loanService } from '@/services/api/loans-service';
+import { useUserLoansStore } from '@/store/user-loans-store';
+import { ApiError } from 'next/dist/server/api-utils';
+import { Loan } from '@/services/api/types/loan-types';
+import { diffHour } from '@/functions/diffHour';
 
 type BookProps = {
   id: string;
@@ -16,15 +22,61 @@ type BookProps = {
 
 export const BookBorrow = ({ id }: BookProps) => {
   const [book, setBook] = React.useState<Book>();
+  const { user } = useUserStore();
+  const { addLoan, userLoans } = useUserLoansStore();
+  const [isLoaned, setIsLoaned] = React.useState(false);
+  const [inLoan, setInLoan] = React.useState<Loan | undefined>();
   const addToast = useToastStore((state) => state.addToast);
+  const conditions = ['pending', 'overdue', 'returned', 'cancelled'];
 
-  const handleSuccess = () => {
-    addToast({
-      title: 'Sucesso!',
-      message: 'A operação foi realizada com sucesso.',
-      type: 'success',
-      duration: 3000,
-    });
+  React.useEffect(() => {
+    const loan = userLoans.data.find((loan) => loan.book.id === +id);
+    if (loan) {
+      setIsLoaned(true);
+      setInLoan(loan);
+    }
+  }, [id, userLoans.data]);
+
+  const handleBorrow = async () => {
+    try {
+      if (!user) {
+        addToast({
+          title: 'Negado!',
+          message: 'Você precisa estar logado para realizar essa operação.',
+          type: 'info',
+          duration: 5000,
+        });
+        return;
+      }
+
+      const response = await loanService.createLoan(String(user.id), id);
+
+      if (response) {
+        addLoan(response);
+        addToast({
+          title: 'Sucesso!',
+          message: 'Livro emprestado com sucesso.',
+          type: 'success',
+          duration: 5000,
+        });
+      }
+    } catch (error) {
+      if (error instanceof ApiError) {
+        addToast({
+          title: 'Erro!',
+          message: error.message,
+          type: 'error',
+          duration: 5000,
+        });
+      } else {
+        addToast({
+          title: 'Erro!',
+          message: 'An unexpected error occurred',
+          type: 'error',
+          duration: 5000,
+        });
+      }
+    }
   };
 
   React.useEffect(() => {
@@ -72,16 +124,53 @@ export const BookBorrow = ({ id }: BookProps) => {
       </div>
 
       <div className={styles.bookActions}>
-        <div className={styles.bookButtons}>
-          <Button
-            onClick={handleSuccess}
-            color="#fff"
-            background="#EE6C4D"
-            padding=".5rem 1.125rem"
-            fontSize="1.25rem"
-          >
-            borrow
-          </Button>
+        <div className={styles.bookActionsInfo}>
+          {isLoaned ? (
+            <div className={styles.bookActionsButtons}>
+              <Button
+                color="#fff"
+                background="#055A8C"
+                padding=".5rem 1.125rem"
+                fontSize="1.25rem"
+              >
+                cancel loan
+              </Button>
+              {!conditions.some((element) =>
+                inLoan?.status.includes(element),
+              ) && (
+                <Button
+                  color="#fff"
+                  background="#EE6C4D"
+                  padding=".5rem 1.125rem"
+                  fontSize="1.25rem"
+                >
+                  renew loan
+                </Button>
+              )}
+            </div>
+          ) : (
+            <Button
+              onClick={handleBorrow}
+              color="#fff"
+              background="#EE6C4D"
+              padding=".5rem 1.125rem"
+              fontSize="1.25rem"
+            >
+              book now
+            </Button>
+          )}
+          {isLoaned && (
+            <>
+              <p className={styles.bookStatus}>
+                status: <span>{inLoan?.status}</span>
+              </p>
+              {inLoan?.dueDate && (
+                <p className={styles.bookDate}>
+                  time until expiration: <span>{diffHour(inLoan.dueDate)}</span>
+                </p>
+              )}
+            </>
+          )}
         </div>
       </div>
 
