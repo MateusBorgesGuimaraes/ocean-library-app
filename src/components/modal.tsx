@@ -6,7 +6,8 @@ import ReactDOM from 'react-dom';
 
 type ModalProps = {
   children: React.ReactNode;
-  setIsOpen: (isOpen: boolean) => void;
+  // setIsOpen: (isOpen: boolean) => void;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const Modal = ({ children, setIsOpen }: ModalProps) => {

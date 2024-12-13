@@ -8,17 +8,51 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { ErrorComponent } from '@/components/form-components/error-component/error-component';
 import { authService } from '@/services/api/auth-service';
 import { useUserStore } from '@/store/user-store';
+import { useToastStore } from '@/store/toast-store';
+import { ApiError } from '@/services/api/utils/api-error';
 
-export const RegisterForm = () => {
+type RegisterProps = {
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const RegisterForm = ({ closeModal }: RegisterProps) => {
   const { setUser } = useUserStore();
+  const addToast = useToastStore((state) => state.addToast);
   const methods = useForm<RegisterInfos>({
     resolver: zodResolver(registerSchema),
   });
 
   async function onSubmit(data: RegisterInfos) {
-    const response = await authService.postRegisterData(data);
-    if (response) {
-      setUser(response);
+    try {
+      const response = await authService.postRegisterData(data);
+
+      if (response) {
+        setUser(response);
+        closeModal(false);
+        addToast({
+          title: 'Register successful!',
+          message: 'You are now logged in.',
+          type: 'success',
+          duration: 5000,
+        });
+      }
+    } catch (error) {
+      closeModal(false);
+      if (error instanceof ApiError) {
+        addToast({
+          title: 'Registration Error',
+          message: error.message || 'An error occurred during registration',
+          type: 'error',
+          duration: 5000,
+        });
+      } else {
+        addToast({
+          title: 'Unexpected Error',
+          message: 'An unexpected error occurred',
+          type: 'error',
+          duration: 5000,
+        });
+      }
     }
   }
 

@@ -11,11 +11,15 @@ import { useUserStore } from '@/store/user-store';
 import { useUserLoansStore } from '@/store/user-loans-store';
 import { loanService } from '@/services/api/loans-service';
 import { useToastStore } from '@/store/toast-store';
-import { ApiError } from 'next/dist/server/api-utils';
+import { ApiError } from '@/services/api/utils/api-error';
 
-export const LoginForm = () => {
+type LoginProps = {
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const LoginForm = ({ closeModal }: LoginProps) => {
   const { setUser } = useUserStore();
-  const { setUserLoans, userLoans } = useUserLoansStore();
+  const { setUserLoans } = useUserLoansStore();
   const addToast = useToastStore((state) => state.addToast);
 
   const methods = useForm<LoginInfos>({
@@ -28,6 +32,7 @@ export const LoginForm = () => {
 
       if (response) {
         setUser(response);
+        closeModal(false);
         addToast({
           title: 'Login successful!',
           message: 'You are now logged in.',
@@ -61,8 +66,6 @@ export const LoginForm = () => {
       }
     }
   }
-
-  console.log('userLoans', userLoans);
 
   return (
     <FormProvider {...methods}>

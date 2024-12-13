@@ -46,6 +46,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
     removeUser();
     authService.removeToken();
     removeUserLoans();
+    window.location.href = '/';
   };
 
   return (
@@ -137,7 +138,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
             <FormBox.Header title="Welcome to the" image={icons.logoIcon} />
             <FormBox.Subtitle text="Log in or register now to continue browsing" />
             <FormBox.Content>
-              <LoginForm />
+              <LoginForm closeModal={setIsOpen} />
             </FormBox.Content>
             <FormBox.Footer
               closeState={setIsOpen}
@@ -155,7 +156,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
             <FormBox.Header title="Welcome to the" image={icons.logoIcon} />
             <FormBox.Subtitle text="Log in or register now to continue browsing" />
             <FormBox.Content>
-              <RegisterForm />
+              <RegisterForm closeModal={setIsOpen2} />
             </FormBox.Content>
             <FormBox.Footer
               closeState={setIsOpen2}

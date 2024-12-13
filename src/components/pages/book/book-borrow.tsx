@@ -12,7 +12,7 @@ import { useToastStore } from '@/store/toast-store';
 import { useUserStore } from '@/store/user-store';
 import { loanService } from '@/services/api/loans-service';
 import { useUserLoansStore } from '@/store/user-loans-store';
-import { ApiError } from 'next/dist/server/api-utils';
+import { ApiError } from '@/services/api/utils/api-error';
 import { Loan } from '@/services/api/types/loan-types';
 import { diffHour } from '@/functions/diffHour';
 
@@ -23,7 +23,7 @@ type BookProps = {
 export const BookBorrow = ({ id }: BookProps) => {
   const [book, setBook] = React.useState<Book>();
   const { user } = useUserStore();
-  const { addLoan, userLoans } = useUserLoansStore();
+  const { addLoan, userLoans, removeLoan } = useUserLoansStore();
   const [isLoaned, setIsLoaned] = React.useState(false);
   const [inLoan, setInLoan] = React.useState<Loan | undefined>();
   const addToast = useToastStore((state) => state.addToast);
@@ -60,6 +60,38 @@ export const BookBorrow = ({ id }: BookProps) => {
           duration: 5000,
         });
       }
+    } catch (error) {
+      if (error instanceof ApiError) {
+        addToast({
+          title: 'Erro!',
+          message: error.message,
+          type: 'error',
+          duration: 5000,
+        });
+      } else {
+        addToast({
+          title: 'Erro!',
+          message: 'An unexpected error occurred',
+          type: 'error',
+          duration: 5000,
+        });
+      }
+    }
+  };
+
+  const cancelLoan = async () => {
+    try {
+      if (!inLoan) return;
+      await loanService.cancelLoan(String(inLoan.id));
+      removeLoan(inLoan.id);
+      setInLoan(undefined);
+      setIsLoaned(false);
+      addToast({
+        title: 'successfully!',
+        message: 'Book loan cancelled.',
+        type: 'success',
+        duration: 5000,
+      });
     } catch (error) {
       if (error instanceof ApiError) {
         addToast({
@@ -128,6 +160,7 @@ export const BookBorrow = ({ id }: BookProps) => {
           {isLoaned ? (
             <div className={styles.bookActionsButtons}>
               <Button
+                onClick={cancelLoan}
                 color="#fff"
                 background="#055A8C"
                 padding=".5rem 1.125rem"

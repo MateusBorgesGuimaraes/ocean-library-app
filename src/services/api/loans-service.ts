@@ -53,6 +53,18 @@ export const loanService = {
     }
   },
 
+  async cancelLoan(id: string) {
+    try {
+      const response = await apiClient.delete(`/loans/${id}/cancel`);
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      return null;
+    }
+  },
+
   async renewLoan(id: string) {
     try {
       const response = await apiClient.put(`/loans/${id}/renew`);

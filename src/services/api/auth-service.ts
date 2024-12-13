@@ -33,7 +33,7 @@ export const authService = {
     name,
     email,
     password,
-  }: RegisterInfos): Promise<ReturnedUser> {
+  }: RegisterInfos): Promise<ReturnedUser | null> {
     try {
       const response = await apiClient.post('/users/register', {
         name,
@@ -47,8 +47,10 @@ export const authService = {
 
       return response.data;
     } catch (error) {
-      console.error('Register failed:', error);
-      throw error;
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      return null;
     }
   },
 
