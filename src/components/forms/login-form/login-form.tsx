@@ -12,6 +12,8 @@ import { useUserLoansStore } from '@/store/user-loans-store';
 import { loanService } from '@/services/api/loans-service';
 import { useToastStore } from '@/store/toast-store';
 import { ApiError } from '@/services/api/utils/api-error';
+import { eventsService } from '@/services/api/events-service';
+import { useUserEventStore } from '@/store/user-event-store';
 
 type LoginProps = {
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +22,7 @@ type LoginProps = {
 export const LoginForm = ({ closeModal }: LoginProps) => {
   const { setUser } = useUserStore();
   const { setUserLoans } = useUserLoansStore();
+  const { setUserEvents } = useUserEventStore();
   const addToast = useToastStore((state) => state.addToast);
 
   const methods = useForm<LoginInfos>({
@@ -47,6 +50,17 @@ export const LoginForm = ({ closeModal }: LoginProps) => {
         }
 
         setUserLoans(loans);
+
+        const events = await eventsService.getAllUserEventsRegistrations(
+          String(response.id),
+        );
+
+        if (events.status === 404) {
+          return;
+        }
+
+        setUserEvents(events);
+        console.log(events);
       }
     } catch (error) {
       if (error instanceof ApiError) {
