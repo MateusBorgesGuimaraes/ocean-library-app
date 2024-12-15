@@ -6,7 +6,9 @@ const nextConfig: NextConfig = {
     // domains: ['192.168.15.15'], para testar no celular
   },
   reactStrictMode: true, // Ativa o modo estrito do React
-  // swcMinify: true,
+  experimental: {
+    authInterrupts: true,
+  },
 };
 
 export default nextConfig;

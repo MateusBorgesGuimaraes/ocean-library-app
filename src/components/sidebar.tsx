@@ -79,14 +79,16 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
               </Link>
             </li>
 
-            <li className={`${styles.menuItem}`}>
-              <Link href="/events">
-                <div className={`${styles.itemContainer}`}>
-                  <Image src={icons.eventIcon} alt="event icon" />
-                  events
-                </div>
-              </Link>
-            </li>
+            {user && (
+              <li className={`${styles.menuItem}`}>
+                <Link href="/events">
+                  <div className={`${styles.itemContainer}`}>
+                    <Image src={icons.eventIcon} alt="event icon" />
+                    events
+                  </div>
+                </Link>
+              </li>
+            )}
 
             {user && (
               <li className={`${styles.menuItem}`}>
@@ -99,14 +101,16 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
               </li>
             )}
 
-            <li className={`${styles.menuItem}`}>
-              <Link href="/loans">
-                <div className={`${styles.itemContainer}`}>
-                  <Image src={icons.loansIcon} alt="loans icon" />
-                  loans
-                </div>
-              </Link>
-            </li>
+            {user && (
+              <li className={`${styles.menuItem}`}>
+                <Link href="/loans">
+                  <div className={`${styles.itemContainer}`}>
+                    <Image src={icons.loansIcon} alt="loans icon" />
+                    loans
+                  </div>
+                </Link>
+              </li>
+            )}
 
             {!user && (
               <>
