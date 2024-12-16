@@ -5,4 +5,9 @@ export const newsService = {
     const response = await apiClient.get(`/news/${id}`);
     return response.data;
   },
+
+  getAllNews: async (page: number = 1, limit: number = 6) => {
+    const response = await apiClient.get(`/news?page=${page}&limit=${limit}`);
+    return response.data;
+  },
 };

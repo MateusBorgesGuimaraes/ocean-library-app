@@ -1,3 +1,5 @@
+import { SearchMeta } from './book-types';
+
 export type News = {
   id: number;
   title: string;
@@ -13,3 +15,8 @@ export type CreatedNews = Omit<
   News,
   'id' | 'createdAt' | 'updatedAt' | 'isActive'
 >;
+
+export type NewsSearch = {
+  data: News[];
+  meta: SearchMeta;
+};
