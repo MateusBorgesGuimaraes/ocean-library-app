@@ -2,34 +2,50 @@
 
 import { TitleHeader } from '@/components/title-header/title-header';
 import styles from './all-news.module.css';
-import { NewsSearch } from '@/services/api/types/news-types';
+import { News } from '@/services/api/types/news-types';
 import React from 'react';
 import { newsService } from '@/services/api/news-service';
 import { NewsCard } from '@/components/news-card/news-card';
+import { usePagination } from '@/hooks/useFetch';
+import { PaginationControls } from '@/components/pagination-controls/pagination-controls';
 
 export const AllNews = () => {
-  const [news, setNews] = React.useState<NewsSearch | null>();
+  const {
+    data: news,
+    meta,
+    loading,
+    error,
+    nextPage,
+    prevPage,
+  } = usePagination<News>({
+    fetchFn: newsService.getAllNews,
+  });
 
-  React.useEffect(() => {
-    const fetchNews = async () => {
-      const news = await newsService.getAllNews();
-      setNews(news);
-    };
-    fetchNews();
-  }, []);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  if (!news) {
-    return null;
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
   return (
     <div className={styles.allNewsContainer}>
-      <TitleHeader title="News" />
-      <div className={styles.cardNewsContainer}>
-        {news.data.map((item) => (
-          <NewsCard news={item} key={item.id} />
-        ))}
+      <div className={styles.newsContainer}>
+        <TitleHeader title="News" />
+        <div className={styles.cardNewsContainer}>
+          {news.map((item) => (
+            <NewsCard news={item} key={item.id} />
+          ))}
+        </div>
       </div>
+
+      <PaginationControls
+        prevPage={prevPage}
+        nextPage={nextPage}
+        page={meta.page}
+        totalPages={meta.totalPages}
+      />
     </div>
   );
 };

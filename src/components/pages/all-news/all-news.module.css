@@ -1,11 +1,15 @@
 .allNewsContainer {
-  min-height: calc(100vh - 2.5rem);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
 
+.newsContainer {
+  min-height: calc(100vh - 2.5rem);
+}
+
 .cardNewsContainer {
+  margin-top: 1.25rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, 19.375rem);
   justify-content: center;
