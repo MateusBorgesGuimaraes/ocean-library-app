@@ -1,0 +1,84 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.caption {
+  padding: 0.5rem 0.5rem 0.5rem 0rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.header {
+  background-color: var(--color-gray-50);
+  border: 1px solid var(--color-gray-300);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.row {
+  border-bottom: 1px solid var(--color-gray-300);
+}
+
+.cell {
+  padding: 0.75rem;
+  border: 1px solid var(--color-gray-300);
+}
+
+.cell a {
+  color: #253EE1;
+  text-decoration: underline;
+}
+
+/* Responsive Styles */
+.mobileView {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .table {
+    display: none;
+  }
+
+  .mobileView {
+    display: block;
+  }
+
+  .mobileCard {
+    background-color: white;
+    border: 1px solid var(--color-gray-300);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  }
+
+  .mobileCardRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-gray-100);
+  }
+
+  .mobileCardRow:last-child {
+    border-bottom: none;
+  }
+
+  .mobileCardLabel {
+    font-weight: bold;
+    color: var(--color-gray-700);
+    margin-right: 1rem;
+  }
+
+  .mobileCardValue {
+    text-align: right;
+    color: var(--color-gray-900);
+  }
+
+  .mobileCardValue a {
+    color: #253EE1;
+    text-decoration: underline;
+  }
+}

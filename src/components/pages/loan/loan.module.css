@@ -1,0 +1,6 @@
+.loan {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: calc(100vh - 2.5rem);
+}

@@ -19,6 +19,10 @@ export const AllNews = () => {
     prevPage,
   } = usePagination<News>({
     fetchFn: newsService.getAllNews,
+    initialParams: void 0,
+    initialPage: 1,
+    initialLimit: 6,
+    skip: false,
   });
 
   if (loading) {

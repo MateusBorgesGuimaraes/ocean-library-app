@@ -85,13 +85,11 @@ export const loanService = {
     }
   },
 
-  async getUserLoans(userId: string) {
-    try {
-      const response = await apiClient.get(`/loans/user/${userId}`);
-      return response.data;
-    } catch (error) {
-      return error;
-    }
+  async getUserLoans(userId: string, page: number = 1, limit: number = 6) {
+    const response = await apiClient.get(
+      `/loans/user/${userId}?page=${page}&limit=${limit}`,
+    );
+    return response.data;
   },
 
   async getUserLoansByEmail(email: string) {

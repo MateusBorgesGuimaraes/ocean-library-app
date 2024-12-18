@@ -8,25 +8,32 @@ export interface PaginationMeta {
   totalPages: number;
 }
 
-export interface UsePaginationOptions<T> {
+export interface UsePaginationOptions<T, P = void> {
   fetchFn: (
+    params: P,
     page?: number,
     limit?: number,
   ) => Promise<{
     data: T[];
-    total: number;
-    page: number;
-    totalPages: number;
+    meta: {
+      total: number;
+      page: number;
+      totalPages: number;
+    };
   } | null>;
+  initialParams: P;
   initialPage?: number;
   initialLimit?: number;
+  skip?: boolean;
 }
 
-export function usePagination<T>({
+export function usePagination<T, P = void>({
   fetchFn,
+  initialParams,
   initialPage = 1,
   initialLimit = 6,
-}: UsePaginationOptions<T>) {
+  skip = false,
+}: UsePaginationOptions<T, P>) {
   const [data, setData] = useState<T[]>([]);
   const [meta, setMeta] = useState<PaginationMeta>({
     page: initialPage,
@@ -38,20 +45,20 @@ export function usePagination<T>({
 
   const fetchData = React.useCallback(
     async (page = initialPage, limit = initialLimit) => {
+      if (skip) {
+        setLoading(false);
+        return;
+      }
       setLoading(true);
       setError(null);
 
       try {
-        const result = await fetchFn(page, limit);
-
+        const result = await fetchFn(initialParams, page, limit);
         if (result) {
           setData(result.data);
-          setMeta({
-            page: result.page,
-            total: result.total,
-            totalPages: result.totalPages,
-          });
+          setMeta(result.meta);
         } else {
+          console.log('passou fora');
           setData([]);
           setMeta({
             page: initialPage,
@@ -71,7 +78,7 @@ export function usePagination<T>({
         setLoading(false);
       }
     },
-    [fetchFn, initialPage, initialLimit],
+    [fetchFn, initialParams, initialPage, initialLimit, skip],
   );
 
   const nextPage = React.useCallback(() => {
@@ -96,8 +103,11 @@ export function usePagination<T>({
   );
 
   React.useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    // Only fetch if not skipped
+    if (!skip) {
+      fetchData();
+    }
+  }, [fetchData, skip]);
 
   return {
     data,
