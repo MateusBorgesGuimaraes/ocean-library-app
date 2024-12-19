@@ -19,6 +19,11 @@ export type BookSearchResult = {
   meta: SearchMeta;
 };
 
+export type BookSearchResultFull = {
+  data: Book[];
+  meta: SearchMeta;
+};
+
 export type BookSearchItem = {
   id: number;
   title: string;

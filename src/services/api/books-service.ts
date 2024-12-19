@@ -1,5 +1,9 @@
 import { apiClient } from './base-api-client';
-import { Book, BookSearchResult } from './types/book-types';
+import {
+  Book,
+  BookSearchResult,
+  BookSearchResultFull,
+} from './types/book-types';
 
 export const booksService = {
   async getLatestBooks(): Promise<Book[]> {
@@ -21,7 +25,7 @@ export const booksService = {
     return response.data;
   },
 
-  async advancedSearch(query: string): Promise<Book[] | null> {
+  async advancedSearch(query: string): Promise<BookSearchResultFull | null> {
     const response = await apiClient.get(`/books/search?${query}`);
 
     if (!response.data) {

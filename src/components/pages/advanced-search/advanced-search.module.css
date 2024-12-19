@@ -1,8 +1,6 @@
 .advancedSearch {
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: center; */
   margin-top: 1.25rem;
   gap: 1.25rem;
   min-height: calc(100vh - 2.5rem);
@@ -46,10 +44,22 @@
 }
 
 .genreContainer li button:hover,.genreContainer li button.active  {
-  background: var(--color-gray-400);
+  background: var(--color-primary-300);
   color: white;
 }
 
+.advancedSearchResultsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+@media(width < 26.25rem ) {
+  .advancedSearchResultsContainer {
+    justify-content: center;
+  }
+}
 
 
 

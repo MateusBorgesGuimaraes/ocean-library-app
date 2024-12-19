@@ -7,16 +7,20 @@ import { CleanInput } from '@/components/form-components/input/clean-input';
 import { Category } from '@/services/api/types/category-types';
 import { categoryService } from '@/services/api/category-service';
 import { booksService } from '@/services/api/books-service';
-import { Book } from '@/services/api/types/book-types';
+import { BookSearchResultFull } from '@/services/api/types/book-types';
+import { BookCard } from '@/components/book-card/book-card';
+import { useToastStore } from '@/store/toast-store';
+import { Loader } from '@/components/loader/loader';
 
 export const AdvancedSearch = () => {
   const [categories, setCategories] = React.useState<Category[]>();
-  const [books, setBooks] = React.useState<Book[]>();
+  const [books, setBooks] = React.useState<BookSearchResultFull>();
   const [title, setTitle] = React.useState('');
   const [author, setAuthor] = React.useState('');
   const [publisher, setPublisher] = React.useState('');
-  const [genre, setGenre] = React.useState('');
   const [genreActive, setGenreActive] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
+  const addToast = useToastStore((state) => state.addToast);
 
   React.useEffect(() => {
     async function fetchCategories() {
@@ -35,11 +39,15 @@ export const AdvancedSearch = () => {
   }
 
   const handleGenreClick = (name: string) => {
+    if (genreActive === name) {
+      setGenreActive('');
+      return;
+    }
     setGenreActive(name);
-    setGenre(name);
   };
 
   const handleSearch = async () => {
+    setIsLoading(true);
     try {
       const query = new URLSearchParams();
 
@@ -55,19 +63,51 @@ export const AdvancedSearch = () => {
         query.set('publisher', publisher);
       }
 
-      if (genre) {
-        query.set('genre', genre);
+      if (genreActive) {
+        query.set(
+          'categoryId',
+          categories.find((c) => c.name === genreActive)!.id.toString(),
+        );
+      }
+
+      if (query.toString() === '') {
+        addToast({
+          title: 'Error',
+          message: 'Please fill at least one field',
+          type: 'error',
+          duration: 5000,
+        });
+        setIsLoading(false);
+        return;
       }
 
       const response = await booksService.advancedSearch(query.toString());
 
+      if (response?.data.length === 0) {
+        addToast({
+          title: 'warning',
+          message: 'No books found',
+          type: 'info',
+          duration: 5000,
+        });
+        setIsLoading(false);
+        return;
+      }
+
       if (response) {
         setBooks(response);
+        setIsLoading(false);
       }
-      console.log('boks', books);
     } catch (error) {
-      console.log(error);
+      addToast({
+        title: 'Error',
+        message:
+          error instanceof Error ? error.message : 'Something went wrong',
+        type: 'error',
+        duration: 5000,
+      });
     }
+    setIsLoading(false);
   };
 
   return (
@@ -127,6 +167,23 @@ export const AdvancedSearch = () => {
           </Button>
         </div>
       </div>
+
+      {isLoading && (
+        <div className={styles.loaderContainer}>
+          <Loader />
+        </div>
+      )}
+
+      {books && (
+        <div className={styles.advancedSearchResults}>
+          <h1>Results</h1>
+          <div className={styles.advancedSearchResultsContainer}>
+            {books?.data.map((book) => (
+              <BookCard key={book.id} book={book} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
