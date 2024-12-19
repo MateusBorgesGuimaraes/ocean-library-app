@@ -20,4 +20,13 @@ export const booksService = {
     }
     return response.data;
   },
+
+  async advancedSearch(query: string): Promise<Book[] | null> {
+    const response = await apiClient.get(`/books/search?${query}`);
+
+    if (!response.data) {
+      return null;
+    }
+    return response.data;
+  },
 };

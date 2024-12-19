@@ -10,6 +10,7 @@ import { BookSearchResult } from '@/services/api/types/book-types';
 import { booksService } from '@/services/api/books-service';
 import { useSearch } from '@/hooks/use-search';
 import { ErrorComponent } from './form-components/error-component/error-component';
+import Link from 'next/link';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -61,9 +62,9 @@ export const Header = () => {
             type="text"
             placeholder="search"
           />
-          <button className={styles.advancedButton}>
+          <Link href={'/advanced-search'} className={styles.advancedButton}>
             <Image src={icons.advandedIcon} alt="advanced search" />
-          </button>
+          </Link>
           {isSearchOpen && (
             <SearchBox data={searchResults?.data} clearSearch={clearSearch} />
           )}
