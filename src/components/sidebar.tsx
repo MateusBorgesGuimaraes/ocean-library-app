@@ -200,7 +200,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
                     {
                       title: 'user loan',
                       icon: icons.userLoanIcon,
-                      link: '/dashboard/librarian/user-loan',
+                      link: '/dashboard/librarian/user-loans',
                     },
                     {
                       title: 'make loan',

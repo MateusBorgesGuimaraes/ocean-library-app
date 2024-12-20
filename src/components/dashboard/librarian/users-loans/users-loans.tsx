@@ -10,7 +10,7 @@ import { usePagination } from '@/hooks/useFetch';
 import { PaginationControls } from '@/components/pagination-controls/pagination-controls';
 import { Loader } from '@/components/loader/loader';
 
-interface TableLoan {
+export interface TableLoan {
   status: string;
   book: string;
   user: string;
@@ -82,6 +82,14 @@ export const UsersLoans = () => {
       <TitleHeader title="Users Loans" />
       <div className={styles.usersLoansTable}>
         <div className={styles.userLoansStatus}>
+          <button
+            className={`${styles.statusButton} ${
+              selectedStatus === '' ? styles.active : ''
+            }`}
+            onClick={() => handleStatusChange('')}
+          >
+            All
+          </button>
           {STATUS.map((status) => (
             <button
               onClick={() => handleStatusChange(status)}

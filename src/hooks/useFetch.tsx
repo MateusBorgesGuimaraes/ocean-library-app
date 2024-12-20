@@ -1,5 +1,6 @@
 'use client';
 
+import { useToastStore } from '@/store/toast-store';
 import React, { useState } from 'react';
 
 export interface PaginationMeta {
@@ -25,6 +26,7 @@ export interface UsePaginationOptions<T, P = void> {
   initialPage?: number;
   initialLimit?: number;
   skip?: boolean;
+  manualFetch?: boolean;
 }
 
 export function usePagination<T, P = void>({
@@ -33,6 +35,7 @@ export function usePagination<T, P = void>({
   initialPage = 1,
   initialLimit = 6,
   skip = false,
+  manualFetch = false,
 }: UsePaginationOptions<T, P>) {
   const [data, setData] = useState<T[]>([]);
   const [meta, setMeta] = useState<PaginationMeta>({
@@ -40,8 +43,10 @@ export function usePagination<T, P = void>({
     total: 0,
     totalPages: 0,
   });
-  const [loading, setLoading] = useState(true);
+
+  const [loading, setLoading] = useState(!manualFetch);
   const [error, setError] = useState<string | null>(null);
+  const addToast = useToastStore((state) => state.addToast);
 
   const fetchData = React.useCallback(
     async (page = initialPage, limit = initialLimit) => {
@@ -66,6 +71,12 @@ export function usePagination<T, P = void>({
           });
         }
       } catch (err) {
+        addToast({
+          title: 'Error',
+          type: 'error',
+          message: err instanceof Error ? err.message : 'An error occurred',
+          duration: 5000,
+        });
         setError(err instanceof Error ? err.message : 'An error occurred');
         setData([]);
         setMeta({
@@ -77,7 +88,7 @@ export function usePagination<T, P = void>({
         setLoading(false);
       }
     },
-    [fetchFn, initialParams, initialPage, initialLimit, skip],
+    [fetchFn, initialParams, initialPage, initialLimit, skip, addToast],
   );
 
   const nextPage = React.useCallback(() => {
@@ -102,10 +113,10 @@ export function usePagination<T, P = void>({
   );
 
   React.useEffect(() => {
-    if (!skip) {
+    if (!skip && !manualFetch) {
       fetchData();
     }
-  }, [fetchData, skip]);
+  }, [fetchData, skip, manualFetch]);
 
   return {
     data,

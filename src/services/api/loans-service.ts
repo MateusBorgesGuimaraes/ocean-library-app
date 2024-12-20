@@ -53,7 +53,7 @@ export const loanService = {
       };
     } catch (error) {
       console.error('Loan failed:', error);
-      return null; // Return null instead of throwing to match hook expectations
+      return null;
     }
   },
 
@@ -106,15 +106,22 @@ export const loanService = {
     return response.data;
   },
 
-  async getUserLoansByEmail(email: string) {
+  async getUserLoansByEmail(
+    email: string,
+    page: number = 1,
+    limit: number = 6,
+  ) {
     try {
       const response = await apiClient.get(
-        `/loans/search/email?email=${email}`,
+        `/loans/search/email?email=${email}&page=${page}&limit=${limit} `,
       );
       return response.data;
     } catch (error) {
-      console.error('Loan failed:', error);
-      throw error;
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      console.error('Unexpected error in createLoan:', error);
+      return null;
     }
   },
 
