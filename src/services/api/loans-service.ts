@@ -31,15 +31,29 @@ export const loanService = {
     }
   },
 
-  async getAllLoans(status: string, page: number, limit: number) {
+  async getAllLoans(
+    params: string = '',
+    page: number = 1,
+    limit: number = 6,
+  ): Promise<{
+    data: Loan[];
+    meta: { total: number; page: number; totalPages: number };
+  } | null> {
     try {
       const response = await apiClient.get(
-        `/loans/findAll?status=${status}&page=${page}&limit=${limit}`,
+        `/loans/findAll?status=${params}&page=${page}&limit=${limit}`,
       );
-      return response.data;
+      return {
+        data: response.data.data,
+        meta: {
+          total: response.data.meta.total,
+          page: response.data.meta.page,
+          totalPages: response.data.meta.totalPages,
+        },
+      };
     } catch (error) {
       console.error('Loan failed:', error);
-      throw error;
+      return null; // Return null instead of throwing to match hook expectations
     }
   },
 

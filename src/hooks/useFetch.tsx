@@ -58,7 +58,6 @@ export function usePagination<T, P = void>({
           setData(result.data);
           setMeta(result.meta);
         } else {
-          console.log('passou fora');
           setData([]);
           setMeta({
             page: initialPage,
@@ -103,7 +102,6 @@ export function usePagination<T, P = void>({
   );
 
   React.useEffect(() => {
-    // Only fetch if not skipped
     if (!skip) {
       fetchData();
     }

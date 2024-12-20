@@ -2,17 +2,18 @@ import React from 'react';
 import styles from './data-table.module.css';
 import Link from 'next/link';
 
-interface ColumnConfig<T> {
+export interface ColumnConfig<T> {
   key: keyof T;
   header: string;
   transform?: (value: T[keyof T]) => string;
   link?: {
     href: (item: T) => string;
     external?: boolean;
+    text?: string; // New property for custom link text
   };
 }
 
-interface DataTableProps<T> {
+export interface DataTableProps<T> {
   data: T[];
   columns: ColumnConfig<T>[];
   caption?: string;
@@ -31,6 +32,7 @@ function DataTable<T>({ data, columns, caption }: DataTableProps<T>) {
 
     if (column.link) {
       const href = column.link.href(item);
+      const linkText = column.link.text || displayValue;
 
       if (column.link.external) {
         return (
@@ -40,14 +42,14 @@ function DataTable<T>({ data, columns, caption }: DataTableProps<T>) {
             rel="noopener noreferrer"
             className={styles.link}
           >
-            {displayValue}
+            {linkText}
           </a>
         );
       }
 
       return (
         <Link href={href} className={styles.link}>
-          {displayValue}
+          {linkText}
         </Link>
       );
     }

@@ -195,22 +195,22 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
                     {
                       title: 'user loans',
                       icon: icons.usersLoansIcon,
-                      link: '/',
+                      link: '/dashboard/librarian/users-loans',
                     },
                     {
                       title: 'user loan',
                       icon: icons.userLoanIcon,
-                      link: '/',
+                      link: '/dashboard/librarian/user-loan',
                     },
                     {
                       title: 'make loan',
                       icon: icons.makeLoanIcon,
-                      link: '/',
+                      link: '/dashboard/librarian/make-loan',
                     },
                     {
                       title: 'user request',
                       icon: icons.requestIcon,
-                      link: '/',
+                      link: '/dashboard/librarian/user-request',
                     },
                   ]}
                 />
@@ -227,12 +227,12 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
                     {
                       title: 'news',
                       icon: icons.socialMediaNewsIcon,
-                      link: '/',
+                      link: '/dashboard/social-media/news',
                     },
                     {
                       title: 'events',
                       icon: icons.socialMediaEventsIcon,
-                      link: '/',
+                      link: '/dashboard/social-media/events',
                     },
                   ]}
                 />
@@ -250,7 +250,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
                     {
                       title: 'categories',
                       icon: icons.caregoriesIcon,
-                      link: '/',
+                      link: '/dashboard/stock-manager/categories',
                     },
                   ]}
                 />
@@ -263,7 +263,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
                     {
                       title: 'users roles',
                       icon: icons.usersRolesIcon,
-                      link: '/',
+                      link: '/dashboard/admin/users-roles',
                     },
                   ]}
                 />
