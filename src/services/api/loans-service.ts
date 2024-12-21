@@ -142,8 +142,11 @@ export const loanService = {
       );
       return response.data;
     } catch (error) {
-      console.error('Loan failed:', error);
-      throw error;
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      console.error('Unexpected error in createLoan:', error);
+      return null;
     }
   },
 };
