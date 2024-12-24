@@ -1,0 +1,32 @@
+.generalCardContainer {
+  margin-top: 1.25rem;
+  background: var(--color-gray-50);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+
+.generalCardContent {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2.5rem;
+  row-gap: 1.25rem;
+}
+
+.generalCardContent > li {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.generalCardContent > li > span {
+  color: var(--color-primary-300);
+  font-weight: 600;
+}
+
+.generalCardFooter {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--color-gray-200);
+  display: flex;
+  gap: 2rem;
+}
+

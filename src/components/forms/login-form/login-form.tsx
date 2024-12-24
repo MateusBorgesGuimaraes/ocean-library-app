@@ -49,7 +49,9 @@ export const LoginForm = ({ closeModal }: LoginProps) => {
           return;
         }
 
-        setUserLoans(loans);
+        if (loans) {
+          setUserLoans(loans);
+        }
 
         const events = await eventsService.getAllUserEventsRegistrations(
           String(response.id),
@@ -59,8 +61,10 @@ export const LoginForm = ({ closeModal }: LoginProps) => {
           return;
         }
 
-        setUserEvents(events);
-        console.log(events);
+        if(events) {
+          setUserEvents(events);
+        }
+
       }
     } catch (error) {
       if (error instanceof ApiError) {
@@ -70,14 +74,16 @@ export const LoginForm = ({ closeModal }: LoginProps) => {
           type: 'error',
           duration: 5000,
         });
-      } else {
-        addToast({
-          title: 'Erro!',
-          message: 'An unexpected error occurred',
-          type: 'error',
-          duration: 5000,
-        });
-      }
+      } 
+      // else {
+      //   console.log('error', error)
+      //   addToast({
+      //     title: 'Erro!',
+      //     message: 'An unexpected error occurred',
+      //     type: 'error',
+      //     duration: 5000,
+      //   });
+      // }
     }
   }
 
