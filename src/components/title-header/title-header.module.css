@@ -4,6 +4,7 @@
   color: var(--color-secondary-100);
   font-weight: 600;
   padding-top: 1.25rem;
-  padding-bottom: .75rem;
+  padding-bottom: 0.75rem;
   border-bottom: 2px solid var(--color-gray-200);
+  text-transform: capitalize;
 }

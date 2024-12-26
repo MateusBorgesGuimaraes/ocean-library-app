@@ -16,7 +16,10 @@ export type ForbiddenRenew = Omit<
 >;
 
 type SimpleUser = Pick<User, 'id' | 'name' | 'email'>;
-type SimpleBook = Pick<Book, 'id' | 'title' | 'author'>;
+type SimpleBook = Pick<
+  Book,
+  'id' | 'title' | 'author' | 'publisher' | 'year' | 'cover' | 'quantity'
+>;
 
 export type Loan = {
   id: number;

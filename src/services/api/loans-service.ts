@@ -26,8 +26,11 @@ export const loanService = {
       const response = await apiClient.get(`/loans/${id}`);
       return response.data;
     } catch (error) {
-      console.error('Loan failed:', error);
-      throw error;
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      console.error('Unexpected error in createLoan:', error);
+      return null;
     }
   },
 
@@ -52,7 +55,10 @@ export const loanService = {
         },
       };
     } catch (error) {
-      console.error('Loan failed:', error);
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      console.error('Unexpected error in createLoan:', error);
       return null;
     }
   },
@@ -62,8 +68,10 @@ export const loanService = {
       const response = await apiClient.put(`/loans/${id}/pickup`);
       return response.data;
     } catch (error) {
-      console.error('Loan failed:', error);
-      throw error;
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      return null;
     }
   },
 
@@ -84,8 +92,10 @@ export const loanService = {
       const response = await apiClient.put(`/loans/${id}/renew`);
       return response.data;
     } catch (error) {
-      console.error('Loan failed:', error);
-      throw error;
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      return null;
     }
   },
 
@@ -94,8 +104,10 @@ export const loanService = {
       const response = await apiClient.put(`/loans/${id}/return`);
       return response.data;
     } catch (error) {
-      console.error('Loan failed:', error);
-      throw error;
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      return null;
     }
   },
 

@@ -193,7 +193,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
                   mainItem={{ title: 'Librarian', icon: icons.librariamIcon }}
                   subItems={[
                     {
-                      title: 'user loans',
+                      title: 'users loans',
                       icon: icons.usersLoansIcon,
                       link: '/dashboard/librarian/users-loans',
                     },
@@ -208,7 +208,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
                       link: '/dashboard/librarian/make-loan',
                     },
                     {
-                      title: 'user request',
+                      title: 'users requests',
                       icon: icons.requestIcon,
                       link: '/dashboard/librarian/user-request',
                     },

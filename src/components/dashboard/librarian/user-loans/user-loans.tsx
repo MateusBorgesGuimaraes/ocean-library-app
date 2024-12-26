@@ -48,8 +48,7 @@ export const UserLoans = () => {
       key: 'id',
       header: 'Actions',
       link: {
-        href: (item: TableLoan) =>
-          `/dashboard/librarian/users-loans/edit/${item.id}`,
+        href: (item: TableLoan) => `/dashboard/librarian/user-loan/${item.id}`,
         text: 'Edit',
       },
     },
