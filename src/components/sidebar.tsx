@@ -64,7 +64,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
       <div className={`${styles.publicContent}`}>
         <div className={`${styles.icon}`}>
           <Link href="/">
-            <Image src={icons.logoIcon} alt="logo" />
+            <Image src={icons.logoIcon} alt="logo" width={132} height={45} />
           </Link>
         </div>
 
@@ -73,7 +73,12 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
             <li className={`${styles.menuItem}`}>
               <Link href="/news">
                 <div className={`${styles.itemContainer}`}>
-                  <Image src={icons.newsIcon} alt="news icon" />
+                  <Image
+                    src={icons.newsIcon}
+                    alt="news icon"
+                    width={24}
+                    height={24}
+                  />
                   news
                 </div>
               </Link>
@@ -83,7 +88,12 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
               <li className={`${styles.menuItem}`}>
                 <Link href="/events">
                   <div className={`${styles.itemContainer}`}>
-                    <Image src={icons.eventIcon} alt="event icon" />
+                    <Image
+                      src={icons.eventIcon}
+                      alt="event icon"
+                      width={24}
+                      height={24}
+                    />
                     events
                   </div>
                 </Link>
@@ -94,7 +104,12 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
               <li className={`${styles.menuItem}`}>
                 <div onClick={openModal3}>
                   <div className={`${styles.itemContainer}`}>
-                    <Image src={icons.requestIcon} alt="request icon" />
+                    <Image
+                      src={icons.requestIcon}
+                      alt="request icon"
+                      width={24}
+                      height={24}
+                    />
                     request
                   </div>
                 </div>
@@ -105,7 +120,12 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
               <li className={`${styles.menuItem}`}>
                 <Link href="/loans">
                   <div className={`${styles.itemContainer}`}>
-                    <Image src={icons.loansIcon} alt="loans icon" />
+                    <Image
+                      src={icons.loansIcon}
+                      alt="loans icon"
+                      width={24}
+                      height={24}
+                    />
                     loans
                   </div>
                 </Link>
@@ -117,7 +137,12 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
                 <li className={`${styles.menuItem}`}>
                   <div onClick={openModal}>
                     <div className={`${styles.itemContainer}`}>
-                      <Image src={icons.signInIcon} alt="sign in icon" />
+                      <Image
+                        src={icons.signInIcon}
+                        alt="sign in icon"
+                        width={24}
+                        height={24}
+                      />
                       sign in
                     </div>
                   </div>
@@ -126,7 +151,12 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
                 <li className={`${styles.menuItem}`}>
                   <div onClick={openModal2}>
                     <div className={`${styles.itemContainer}`}>
-                      <Image src={icons.signUpIcon} alt="sign up icon" />
+                      <Image
+                        src={icons.signUpIcon}
+                        alt="sign up icon"
+                        width={24}
+                        height={24}
+                      />
                       sign up
                     </div>
                   </div>
@@ -272,7 +302,12 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
           </div>
           <div className={styles.logoutContainer}>
             <button className={styles.logoutButton} onClick={logout}>
-              <Image src={icons.logoutIcon} alt="loans icon" />
+              <Image
+                src={icons.logoutIcon}
+                alt="loans icon"
+                width={24}
+                height={24}
+              />
               logout
             </button>
           </div>

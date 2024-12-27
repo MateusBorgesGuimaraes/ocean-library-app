@@ -61,10 +61,9 @@ export const LoginForm = ({ closeModal }: LoginProps) => {
           return;
         }
 
-        if(events) {
+        if (events) {
           setUserEvents(events);
         }
-
       }
     } catch (error) {
       if (error instanceof ApiError) {
@@ -74,16 +73,7 @@ export const LoginForm = ({ closeModal }: LoginProps) => {
           type: 'error',
           duration: 5000,
         });
-      } 
-      // else {
-      //   console.log('error', error)
-      //   addToast({
-      //     title: 'Erro!',
-      //     message: 'An unexpected error occurred',
-      //     type: 'error',
-      //     duration: 5000,
-      //   });
-      // }
+      }
     }
   }
 

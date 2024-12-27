@@ -32,19 +32,23 @@ export const AccordionLinks = ({ mainItem, subItems }: AccordionLinksProps) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <p className={styles.mainItemTitle}>
-          <Image src={mainItem.icon} alt="icon" /> {mainItem.title}
+          <Image src={mainItem.icon} alt="icon" width={24} height={24} />{' '}
+          {mainItem.title}
         </p>
         <Image
           className={styles.accordionIcon}
           src={icons.accordionIcon}
           alt="icon"
+          width={24}
+          height={24}
         />
       </button>
       <ul className={`${styles.subItems} ${isOpen && styles.open}`}>
         {subItems.map((subItem) => (
           <li key={subItem.title}>
             <Link href={subItem.link}>
-              <Image src={subItem.icon} alt="icon" /> {subItem.title}
+              <Image src={subItem.icon} alt="icon" width={24} height={24} />{' '}
+              {subItem.title}
             </Link>
           </li>
         ))}

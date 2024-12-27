@@ -45,7 +45,12 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <button onClick={toggleSidebar} className={styles.menuButton}>
-        <Image src={icons.sidebarMenuIcon} alt="sidebar menu icon" />
+        <Image
+          src={icons.sidebarMenuIcon}
+          alt="sidebar menu icon"
+          width={24}
+          height={24}
+        />
       </button>
       <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
         <Sidebar onClose={toggleSidebar} />
@@ -53,7 +58,12 @@ export const Header = () => {
       <div className={styles.headerMain}>
         <div className={styles.searchBar}>
           <button className={styles.searchButton}>
-            <Image src={icons.searchIcon} alt="search icon" />
+            <Image
+              src={icons.searchIcon}
+              alt="search icon"
+              width={24}
+              height={24}
+            />
           </button>
           <input
             value={searchValue}
@@ -63,7 +73,12 @@ export const Header = () => {
             placeholder="search"
           />
           <Link href={'/advanced-search'} className={styles.advancedButton}>
-            <Image src={icons.advandedIcon} alt="advanced search" />
+            <Image
+              src={icons.advandedIcon}
+              alt="advanced search"
+              width={32}
+              height={32}
+            />
           </Link>
           {isSearchOpen && (
             <SearchBox data={searchResults?.data} clearSearch={clearSearch} />

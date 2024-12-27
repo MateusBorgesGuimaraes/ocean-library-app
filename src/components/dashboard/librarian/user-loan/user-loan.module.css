@@ -72,6 +72,7 @@
 
 .statusButtons {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.25rem;
 }
 
@@ -97,4 +98,62 @@
 
 .statusButtons button.active {
   background: var(--color-primary-400);
+}
+
+@media (width < 600px) {
+  .status {
+    font-size: 1rem;
+  }
+
+  .infos {
+    gap: 0.75rem;
+  }
+
+  .image img {
+    object-fit: cover;
+    height: 22.5rem;
+    width: 15rem;
+  }
+
+  .bookInfos {
+    max-height: 100%;
+    gap: 0.75rem;
+  }
+
+  .bookTitle {
+    font-size: 1.5rem;
+  }
+
+  .bookYear,
+  .bookAuthor,
+  .publisher,
+  .copies {
+    font-size: 1rem;
+  }
+
+  .actions {
+    margin-top: 1.5rem;
+  }
+
+  .changeStatus {
+    font-size: 1rem;
+  }
+
+  .statusButtons {
+    gap: 0.75rem;
+  }
+
+  .statusButtons button {
+    font-size: 1rem;
+  }
+
+  .saveChange {
+    margin-top: 1rem;
+  }
+}
+
+@media (width < 440px) {
+  .infos {
+    flex-direction: column;
+  }
 }

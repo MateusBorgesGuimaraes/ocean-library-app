@@ -115,6 +115,7 @@ export const UserLoan = ({ id }: UserLoanProps) => {
       }
     }
   };
+
   return (
     <div className={styles.userLoanContainer}>
       <TitleHeader title={`${userLoanInfos?.user?.name} loan`} />

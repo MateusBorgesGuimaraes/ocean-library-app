@@ -37,7 +37,12 @@ export const Modal = ({ children, setIsOpen }: ModalProps) => {
           onClick={() => setIsOpen(false)}
           aria-label="Close Modal"
         >
-          <Image src={icons.closeIcon} alt="Close Modal" />
+          <Image
+            src={icons.closeIcon}
+            alt="Close Modal"
+            width={24}
+            height={24}
+          />
         </button>
         {children}
       </div>

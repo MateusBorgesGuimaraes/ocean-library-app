@@ -28,7 +28,12 @@ export const BookCard = ({ book }: BookCardProps) => {
       }}
     >
       <div>
-        <Image src={icons.expandIcon} alt="expand icon" />
+        <Image
+          src={icons.expandIcon}
+          alt="expand icon"
+          width={24}
+          height={24}
+        />
       </div>
     </button>
   );

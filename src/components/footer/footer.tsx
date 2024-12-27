@@ -17,7 +17,7 @@ export const Footer = () => {
 
       <div className={styles.logoContainer}>
         <div>
-          <Image src={icons.logoIcon} alt="logo" />
+          <Image src={icons.logoIcon} alt="logo" width={132} height={45} />
         </div>
         <p>©Ocean Library all rights reserved</p>
       </div>

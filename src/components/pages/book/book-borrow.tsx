@@ -210,7 +210,12 @@ export const BookBorrow = ({ id }: BookProps) => {
       <div className={styles.bookWarnings}>
         <ul>
           <li>
-            <Image src={icons.attentionIcon} alt="warning icon" />{' '}
+            <Image
+              src={icons.attentionIcon}
+              alt="warning icon"
+              width={24}
+              height={24}
+            />
             <p>
               You have 24 hours to withdraw the book from the library, after
               that the order will be canceled.
@@ -218,12 +223,22 @@ export const BookBorrow = ({ id }: BookProps) => {
           </li>
 
           <li>
-            <Image src={icons.attentionIcon} alt="warning icon" />{' '}
+            <Image
+              src={icons.attentionIcon}
+              alt="warning icon"
+              width={24}
+              height={24}
+            />
             <p>You have 7 days to deliver the book after you pick it up.</p>
           </li>
 
           <li>
-            <Image src={icons.attentionIcon} alt="warning icon" />{' '}
+            <Image
+              src={icons.attentionIcon}
+              alt="warning icon"
+              width={24}
+              height={24}
+            />
             <p>
               After 7 days, if you haven&apos;t finished reading the book, you
               can renew it for another 3 days, this can be done online.
@@ -231,7 +246,12 @@ export const BookBorrow = ({ id }: BookProps) => {
           </li>
 
           <li>
-            <Image src={icons.attentionIcon} alt="warning icon" />{' '}
+            <Image
+              src={icons.attentionIcon}
+              alt="warning icon"
+              width={24}
+              height={24}
+            />
             <p>
               Any damage caused to the book will result in a fine and, depending
               on the level of damage, a complete replacement of the copy.
@@ -239,7 +259,12 @@ export const BookBorrow = ({ id }: BookProps) => {
           </li>
 
           <li>
-            <Image src={icons.attentionIcon} alt="warning icon" />{' '}
+            <Image
+              src={icons.attentionIcon}
+              alt="warning icon"
+              width={24}
+              height={24}
+            />
             <p>You can only borrow one book at a time.</p>
           </li>
         </ul>

@@ -55,7 +55,12 @@ export const Toast = ({
           setTimeout(onClose, 300);
         }}
       >
-        <Image src={icons.circleCloseIcon} alt="close icon" />
+        <Image
+          src={icons.circleCloseIcon}
+          alt="close icon"
+          width={24}
+          height={24}
+        />
       </button>
       <h3 className={styles.toastTitle}>{title}</h3>
       <p className={styles.toastMessage}>{message}</p>

@@ -42,6 +42,8 @@ export const BookPreview = () => {
             src={icons.closeIcon}
             alt="close"
             className={styles.closeIcon}
+            width={24}
+            height={24}
           />
         </div>
         <h3 className={styles.bookTitle}>{book?.title}</h3>

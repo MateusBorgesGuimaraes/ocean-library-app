@@ -13,7 +13,7 @@ export const FormBoxHeader = ({ title, image }: FormBoxHeaderProps) => {
         {title}
         {image && (
           <span>
-            <Image src={image} alt="logo" />
+            <Image src={image} alt="logo" width={144} height={54} />
           </span>
         )}
       </h1>
