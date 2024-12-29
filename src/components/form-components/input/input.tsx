@@ -15,7 +15,11 @@ export const Input = ({ label, type, name }: InputProps) => {
       <label className={styles.label} htmlFor={name}>
         {label}
       </label>
-      <input className={styles.input} {...register(name)} type={type} />
+      {type === 'textarea' ? (
+        <textarea className={styles.textarea} {...register(name)} />
+      ) : (
+        <input className={styles.input} {...register(name)} type={type} />
+      )}
     </div>
   );
 };

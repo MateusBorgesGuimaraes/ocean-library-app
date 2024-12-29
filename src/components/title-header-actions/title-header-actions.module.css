@@ -4,6 +4,8 @@
   padding-top: 1.25rem;
   padding-bottom: 0.75rem;
   justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
   align-items: center;
   border-bottom: 2px solid var(--color-gray-200);
 }
@@ -41,7 +43,13 @@
   background: var(--color-gray-300);
 }
 
-.actions li image {
+.actions li a {
   width: 24px;
   height: 24px;
+}
+
+@media (width < 23.75rem) {
+  .container {
+    gap: 1rem;
+  }
 }

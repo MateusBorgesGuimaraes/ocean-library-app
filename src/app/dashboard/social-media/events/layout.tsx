@@ -1,5 +1,4 @@
-import { TitleHeaderActions } from '@/components/title-header-actions/title-header-actions';
-import { icons } from '../../../../../public/assets/assets';
+import { DynamicTitleHeader } from '@/components/DynamicTitleHeader/DynamicTitleHeader';
 
 export default function EventsLayout({
   children,
@@ -9,26 +8,7 @@ export default function EventsLayout({
   return (
     <section>
       <div>
-        <TitleHeaderActions
-          title="Events"
-          links={[
-            {
-              href: '/dashboard/social-media/events/create-event',
-              alt: 'create icon',
-              icon: icons.addItemIcon,
-            },
-            {
-              href: '/dashboard/social-media/events',
-              alt: 'list all icon',
-              icon: icons.listItemsIcon,
-            },
-            {
-              href: '/dashboard/social-media/events/search-event',
-              alt: 'search icon',
-              icon: icons.searchItemsIcon,
-            },
-          ]}
-        />
+        <DynamicTitleHeader />
       </div>
       {children}
     </section>

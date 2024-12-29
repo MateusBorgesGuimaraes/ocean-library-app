@@ -1,0 +1,15 @@
+.formInputs {
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inputTextsContainer,
+.inputImageContainer,
+.buttonContainer {
+  max-width: 800px;
+  width: 100%;
+}

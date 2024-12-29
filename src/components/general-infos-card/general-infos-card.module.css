@@ -28,5 +28,17 @@
   border-top: 2px solid var(--color-gray-200);
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 
+@media (width < 37.5rem) {
+  .generalCardFooter {
+    gap: 1.25rem;
+  }
+}
+
+@media (width < 25rem) {
+  .generalCardFooter {
+    gap: 1rem;
+  }
+}

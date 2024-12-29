@@ -23,12 +23,7 @@ export const TitleHeaderActions = ({ title, links }: TitleHeaderProps) => {
         {links?.map((link) => (
           <li key={link.href}>
             <Link href={link.href}>
-              <Image
-                src={link.icon}
-                alt={link.alt}
-                width={24} // Add appropriate width
-                height={24} // Add appropriate height
-              />
+              <Image src={link.icon} alt={link.alt} width={24} height={24} />
             </Link>
           </li>
         ))}
