@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { TitleHeaderActions } from '@/components/title-header-actions/title-header-actions';
-import { icons } from '../../../public/assets/assets';
+import { icons } from '../../../../../public/assets/assets';
 
 type ValidPaths =
   | '/dashboard/social-media/events'
@@ -36,7 +36,7 @@ const getTitleFromPath = (pathname: string): string => {
   return 'All Events';
 };
 
-export function DynamicTitleHeader() {
+export function DynamicTitleHeaderSocialEvents() {
   const pathname = usePathname();
   const title = getTitleFromPath(pathname);
 

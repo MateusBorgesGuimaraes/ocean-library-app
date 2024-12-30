@@ -20,3 +20,12 @@ export type NewsSearch = {
   data: News[];
   meta: SearchMeta;
 };
+
+export type NewsFormData = {
+  title: string;
+  content: string;
+  tags: string[];
+  coverImage: FileList;
+};
+
+export type EditNewsFormData = Partial<Omit<NewsFormData, 'coverImage'>>;

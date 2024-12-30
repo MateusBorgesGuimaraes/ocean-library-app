@@ -1,4 +1,4 @@
-import { DynamicTitleHeader } from '@/components/DynamicTitleHeader/DynamicTitleHeader';
+import { DynamicTitleHeaderSocialEvents } from '@/components/dynamic-headers/social-dynamic-headers/dynamic-title-header-social-events/dynamic-title-header-social-events';
 
 export default function EventsLayout({
   children,
@@ -8,7 +8,7 @@ export default function EventsLayout({
   return (
     <section>
       <div>
-        <DynamicTitleHeader />
+        <DynamicTitleHeaderSocialEvents />
       </div>
       {children}
     </section>

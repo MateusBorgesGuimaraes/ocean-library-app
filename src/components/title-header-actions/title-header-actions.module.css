@@ -37,9 +37,12 @@
   transition: all 0.2s ease-in-out;
 }
 
+.active {
+  background: var(--color-gray-300) !important;
+}
+
 .actions li:hover,
-.actions li:focus,
-.actions li:active {
+.actions li:focus {
   background: var(--color-gray-300);
 }
 

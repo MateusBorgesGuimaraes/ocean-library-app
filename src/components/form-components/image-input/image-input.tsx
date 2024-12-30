@@ -1,7 +1,7 @@
+import { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import styles from './image-input.module.css';
 import formatLink from '@/functions/formatLink';
-import React from 'react';
 
 interface ImageInputProps {
   label: string;
@@ -12,7 +12,6 @@ interface ImageInputProps {
   width?: string;
   height?: string;
   initialValue?: string;
-  onImageChange?: (file: File | null) => void;
 }
 
 export const ImageInput = ({
@@ -24,13 +23,12 @@ export const ImageInput = ({
   initialValue,
   width = '100%',
   height = '140px',
-  onImageChange,
 }: ImageInputProps) => {
-  const [preview, setPreview] = React.useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
   const { register, setValue } = useFormContext();
   const { onChange: registerOnChange, ...registerRest } = register(name);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (initialValue) {
       const formattedUrl = formatLink(initialValue, 'pictures');
       setPreview(formattedUrl);
@@ -38,19 +36,14 @@ export const ImageInput = ({
   }, [initialValue]);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    registerOnChange(event);
     const file = event.target.files?.[0];
-
-    if (preview && !preview.includes('pictures')) {
-      URL.revokeObjectURL(preview);
-    }
-
     if (file) {
+      if (preview && !preview.includes('pictures')) {
+        URL.revokeObjectURL(preview);
+      }
       const previewUrl = URL.createObjectURL(file);
       setPreview(previewUrl);
-
-      setValue(name, event.target.files);
-
-      onImageChange?.(file);
     }
   };
 
@@ -58,13 +51,11 @@ export const ImageInput = ({
     if (preview && !preview.includes('pictures')) {
       URL.revokeObjectURL(preview);
     }
-
     setPreview(null);
-    setValue(name, null);
-    onImageChange?.(null);
+    setValue(name, null, { shouldValidate: true });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       if (preview && !preview.includes('pictures')) {
         URL.revokeObjectURL(preview);
@@ -72,8 +63,14 @@ export const ImageInput = ({
     };
   }, [preview]);
 
-  const containerStyle = { width };
-  const wrapperStyle = { width, height };
+  const containerStyle = {
+    width,
+  };
+
+  const wrapperStyle = {
+    width,
+    height,
+  };
 
   return (
     <div className={styles.imageInputContainer} style={containerStyle}>

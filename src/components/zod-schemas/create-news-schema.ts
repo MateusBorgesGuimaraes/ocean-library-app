@@ -8,15 +8,11 @@ const ACCEPTED_IMAGE_TYPES = [
   'image/webp',
 ];
 
-export const eventFormSchema = z.object({
+export const newsFormSchema = z.object({
   title: z.string().min(3, 'Title must be at least 3 characters'),
-  description: z.string().min(10, 'Description must be at least 10 characters'),
-  date: z.string().refine((date) => new Date(date) > new Date(), {
-    message: 'Event date must be in the future',
-  }),
-  location: z.string().min(3, 'Location must be at least 3 characters'),
-  seats: z.string().min(1, 'Must have at least 1 seat'),
-  banner: z
+  content: z.string().min(10, 'Content must be at least 10 characters'),
+  tags: z.array(z.string()).min(1, 'Must have at least 1 tag'),
+  coverImage: z
     .custom<FileList>()
     .optional()
     .refine(

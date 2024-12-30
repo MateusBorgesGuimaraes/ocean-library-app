@@ -1,58 +1,52 @@
 'use client';
+
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { eventsService } from '@/services/api/events-service';
-import styles from './create-event-form.module.css';
+import styles from './create-news-form.module.css';
 import { Input } from '@/components/form-components/input/input';
 import { ErrorComponent } from '@/components/form-components/error-component/error-component';
 import { ApiError } from '@/services/api/utils/api-error';
 import { useToastStore } from '@/store/toast-store';
-import { eventFormSchema } from '@/components/zod-schemas/create-event-schema';
 import React from 'react';
 import { ImageInput } from '@/components/form-components/image-input/image-input';
 import { ButtonForm } from '@/components/form-components/button-form/button-form';
 
-type EventFormData = {
-  title: string;
-  description: string;
-  date: string;
-  location: string;
-  seats: number;
-  banner: FileList;
-};
+import { newsService } from '@/services/api/news-service';
+import { TagsInput } from '@/components/form-components/tags-input/tags-input';
+import { NewsFormData } from '@/services/api/types/news-types';
+import { newsFormSchema } from '@/components/zod-schemas/create-news-schema';
 
-export const CreateEventForm = () => {
+export const CreateNewsForm = () => {
   const [previewUrl, setPreviewUrl] = React.useState<string | null>(null);
   const { addToast } = useToastStore();
 
-  const methods = useForm<EventFormData>({
-    resolver: zodResolver(eventFormSchema),
+  const methods = useForm<NewsFormData>({
+    resolver: zodResolver(newsFormSchema),
+    defaultValues: {
+      title: '',
+      content: '',
+      tags: [],
+      coverImage: undefined,
+    },
   });
 
-  const onSubmit = async (data: EventFormData) => {
-    console.log('Submitting form data:', data);
-    console.log('Banner file:', data.banner?.[0]);
+  const onSubmit = async (data: NewsFormData) => {
     try {
-      const eventResponse = await eventsService.createEvent({
+      const newsResponse = await newsService.createNews({
         title: data.title,
-        description: data.description,
-        date: data.date,
-        location: data.location,
-        seats: +data.seats,
+        content: data.content,
+        tags: data.tags,
       });
 
-      if (data.banner && data.banner[0]) {
+      if (data.coverImage?.[0]) {
         const formData = new FormData();
-        formData.append('file', data.banner[0]);
-
-        console.log('Uploading banner:', formData.get('file'));
-
-        await eventsService.uploadEventBanner(eventResponse.id, formData);
+        formData.append('file', data.coverImage[0]);
+        await newsService.uploadNewsCover(newsResponse.id, formData);
       }
 
       addToast({
         title: 'Success',
-        message: 'Event created successfully!',
+        message: 'News created successfully!',
         type: 'success',
         duration: 5000,
       });
@@ -67,8 +61,7 @@ export const CreateEventForm = () => {
       if (error instanceof ApiError) {
         addToast({
           title: 'Error',
-          message:
-            error.message || 'An error occurred while creating the event',
+          message: error.message || 'An error occurred while creating the news',
           type: 'error',
           duration: 5000,
         });
@@ -90,7 +83,7 @@ export const CreateEventForm = () => {
         <div className={styles.formInputs}>
           <div className={styles.inputTextsContainer}>
             <div>
-              <Input label="Title" type="text" name="title" />
+              <Input label="title" type="text" name="title" />
               {methods.formState.errors.title && (
                 <ErrorComponent
                   message={methods.formState.errors.title.message}
@@ -99,37 +92,19 @@ export const CreateEventForm = () => {
             </div>
 
             <div>
-              <Input label="Date" type="datetime-local" name="date" />
-              {methods.formState.errors.date && (
+              <TagsInput label="tags" name="tags" />
+              {methods.formState.errors.tags && (
                 <ErrorComponent
-                  message={methods.formState.errors.date.message}
+                  message={methods.formState.errors.tags.message}
                 />
               )}
             </div>
 
             <div>
-              <Input label="Location" type="text" name="location" />
-              {methods.formState.errors.location && (
+              <Input label="content" type="textarea" name="content" />
+              {methods.formState.errors.content && (
                 <ErrorComponent
-                  message={methods.formState.errors.location.message}
-                />
-              )}
-            </div>
-
-            <div>
-              <Input label="Seats" type="number" name="seats" />
-              {methods.formState.errors.seats && (
-                <ErrorComponent
-                  message={methods.formState.errors.seats.message}
-                />
-              )}
-            </div>
-
-            <div>
-              <Input label="Description" type="textarea" name="description" />
-              {methods.formState.errors.description && (
-                <ErrorComponent
-                  message={methods.formState.errors.description.message}
+                  message={methods.formState.errors.content.message}
                 />
               )}
             </div>
@@ -138,17 +113,18 @@ export const CreateEventForm = () => {
           <div className={styles.inputImageContainer}>
             <div className={styles.fileInputContainer}>
               <ImageInput
-                label="Event Banner"
-                name="banner"
+                label="cover image"
+                name="coverImage"
                 required
                 accept="image/jpeg,image/png,image/webp"
-                error={methods.formState.errors.banner?.message}
-                height="200px"
+                error={methods.formState.errors.coverImage?.message}
+                height="300px"
+                width="300px"
               />
             </div>
           </div>
           <div className={styles.buttonContainer}>
-            <ButtonForm>Create Event</ButtonForm>
+            <ButtonForm>Create News</ButtonForm>
           </div>
         </div>
       </form>
