@@ -276,11 +276,15 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
                     icon: icons.stockManagerIcon,
                   }}
                   subItems={[
-                    { title: 'book', icon: icons.bookIcon, link: '/' },
+                    {
+                      title: 'book',
+                      icon: icons.bookIcon,
+                      link: '/dashboard/stock-manager/books',
+                    },
                     {
                       title: 'categories',
                       icon: icons.caregoriesIcon,
-                      link: '/dashboard/stock-manager/categories',
+                      link: '/dashboard/stock-manager/category',
                     },
                   ]}
                 />

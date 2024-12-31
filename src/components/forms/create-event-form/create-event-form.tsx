@@ -1,14 +1,15 @@
 'use client';
+
+import React from 'react';
+import styles from './create-event-form.module.css';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { eventsService } from '@/services/api/events-service';
-import styles from './create-event-form.module.css';
 import { Input } from '@/components/form-components/input/input';
 import { ErrorComponent } from '@/components/form-components/error-component/error-component';
 import { ApiError } from '@/services/api/utils/api-error';
 import { useToastStore } from '@/store/toast-store';
 import { eventFormSchema } from '@/components/zod-schemas/create-event-schema';
-import React from 'react';
 import { ImageInput } from '@/components/form-components/image-input/image-input';
 import { ButtonForm } from '@/components/form-components/button-form/button-form';
 
@@ -30,8 +31,6 @@ export const CreateEventForm = () => {
   });
 
   const onSubmit = async (data: EventFormData) => {
-    console.log('Submitting form data:', data);
-    console.log('Banner file:', data.banner?.[0]);
     try {
       const eventResponse = await eventsService.createEvent({
         title: data.title,
@@ -44,8 +43,6 @@ export const CreateEventForm = () => {
       if (data.banner && data.banner[0]) {
         const formData = new FormData();
         formData.append('file', data.banner[0]);
-
-        console.log('Uploading banner:', formData.get('file'));
 
         await eventsService.uploadEventBanner(eventResponse.id, formData);
       }

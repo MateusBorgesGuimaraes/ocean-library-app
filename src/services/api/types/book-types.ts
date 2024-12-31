@@ -40,3 +40,20 @@ export type CreatedBook = Omit<
   Book,
   'id' | 'createdAt' | 'updatedAt' | 'availability'
 >;
+
+export type BookFormData = {
+  title: string;
+  author: string;
+  publisher: string;
+  isbn: string;
+  availability: boolean;
+  year: number;
+  categoryId: number;
+  quantity: number;
+  synopsis: string;
+  cover?: FileList;
+};
+
+export type EditBookFormData = Partial<
+  Omit<BookFormData, 'cover' | 'categoryId'>
+>;
