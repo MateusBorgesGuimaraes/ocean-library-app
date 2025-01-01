@@ -14,6 +14,12 @@
   width: 100%;
 }
 
+.inputTextsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .twoInputsContainer {
   width: 100%;
   display: flex;

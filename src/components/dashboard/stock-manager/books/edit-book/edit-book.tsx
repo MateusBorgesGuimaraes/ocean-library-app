@@ -1,11 +1,8 @@
 'use client';
 
 import { EditBookForm } from '@/components/forms/edit-book-form/edit-book-form';
-import { EditNewsForm } from '@/components/forms/edit-news-form/edit-news-form';
 import { booksService } from '@/services/api/books-service';
-import { newsService } from '@/services/api/news-service';
 import { Book } from '@/services/api/types/book-types';
-import { News } from '@/services/api/types/news-types';
 import React from 'react';
 
 type EditBookProps = {

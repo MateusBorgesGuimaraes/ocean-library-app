@@ -13,3 +13,9 @@
   max-width: 800px;
   width: 100%;
 }
+
+.inputTextsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}

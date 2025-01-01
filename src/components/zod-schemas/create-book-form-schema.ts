@@ -14,7 +14,7 @@ export const bookFormSchema = z.object({
   publisher: z.string().min(3, 'Publisher must be at least 3 characters'),
   isbn: z.string().min(3, 'ISBN must be at least 3 characters'),
   year: z.string().min(3, 'Year must be at least 3 characters'),
-  categoryId: z.string().min(1, 'Category must be at least 1 number'),
+  category: z.string().min(1, 'Category must be at least 1 number'),
   quantity: z.string().min(1, 'Quantity must be at least 1 number'),
   synopsis: z.string().min(10, 'Synopsis must be at least 10 characters'),
   cover: z

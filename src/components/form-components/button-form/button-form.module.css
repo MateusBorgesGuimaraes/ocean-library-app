@@ -1,14 +1,10 @@
 .button {
-  border-radius: 1.25rem;
   width: 100%;
-  padding-block: .75rem;
   color: white;
-  font-size: 1.5rem;
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
   font-weight: 500;
-  background: var(--color-secondary-100);
   border: none;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 
@@ -16,9 +12,9 @@
   opacity: 0.8;
 }
 
-@media(width < 37.5rem) {
+@media (width < 37.5rem) {
   .button {
     font-size: 1.25rem;
-    border-radius: .75rem;
+    border-radius: 0.75rem;
   }
 }

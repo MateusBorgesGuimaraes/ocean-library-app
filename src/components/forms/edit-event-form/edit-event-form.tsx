@@ -1,8 +1,9 @@
 'use client';
+
+import styles from './edit-event-form.module.css';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { eventsService } from '@/services/api/events-service';
-import styles from './edit-event-form.module.css';
 import { Input } from '@/components/form-components/input/input';
 import { ErrorComponent } from '@/components/form-components/error-component/error-component';
 import { ApiError } from '@/services/api/utils/api-error';

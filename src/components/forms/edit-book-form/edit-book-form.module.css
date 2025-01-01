@@ -23,3 +23,9 @@
 .twoInputsContainer > div {
   width: 100%;
 }
+
+.inputTextsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}

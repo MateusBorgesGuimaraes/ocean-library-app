@@ -19,7 +19,7 @@ type BookFormData = {
   isbn: string;
   publisher: string;
   year: number;
-  categoryId: number;
+  category: number;
   quantity: number;
   synopsis: string;
   cover: FileList;
@@ -41,7 +41,7 @@ export const CreateBookForm = () => {
         publisher: data.publisher,
         isbn: data.isbn,
         year: +data.year,
-        categoryId: +data.categoryId,
+        category: +data.category,
         quantity: +data.quantity,
         synopsis: data.synopsis,
         availability: true,
@@ -140,10 +140,10 @@ export const CreateBookForm = () => {
 
             <div className={styles.twoInputsContainer}>
               <div>
-                <Input label="Category Id" type="number" name="categoryId" />
-                {methods.formState.errors.categoryId && (
+                <Input label="Category" type="number" name="category" />
+                {methods.formState.errors.category && (
                   <ErrorComponent
-                    message={methods.formState.errors.categoryId.message}
+                    message={methods.formState.errors.category.message}
                   />
                 )}
               </div>

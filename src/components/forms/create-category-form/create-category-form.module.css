@@ -1,17 +1,25 @@
+.form {
+  height: calc(100vh - 2.5rem);
+  display: flex;
+  justify-content: center;
+}
+
 .formInputs {
+  max-width: 800px;
+  width: 100%;
   margin-top: 1.25rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .inputTextsContainer,
-.inputImageContainer,
-.buttonContainer {
-  max-width: 800px;
+.inputImageContainer {
   width: 100%;
+}
+
+.buttonContainer {
+  align-self: self-start;
 }
 
 .inputTextsContainer {

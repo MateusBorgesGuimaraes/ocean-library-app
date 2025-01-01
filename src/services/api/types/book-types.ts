@@ -8,8 +8,15 @@ export type Book = {
   isbn: string;
   synopsis: string;
   availability: boolean;
-  category: string;
+  category: Category;
   quantity: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Category = {
+  id: number;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -48,7 +55,7 @@ export type BookFormData = {
   isbn: string;
   availability: boolean;
   year: number;
-  categoryId: number;
+  category: number;
   quantity: number;
   synopsis: string;
   cover?: FileList;

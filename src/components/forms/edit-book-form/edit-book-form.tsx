@@ -20,6 +20,7 @@ type BookFormData = {
   author: string;
   isbn: string;
   publisher: string;
+  category: number;
   year: number;
   quantity: number;
   synopsis: string;
@@ -44,6 +45,7 @@ export const EditBookForm = ({ initialData }: EditBookFormProps) => {
       author: initialData.author,
       publisher: initialData.publisher,
       isbn: initialData.isbn,
+      category: initialData.category.id,
       year: +initialData.year,
       quantity: +initialData.quantity,
       synopsis: initialData.synopsis,
@@ -67,6 +69,11 @@ export const EditBookForm = ({ initialData }: EditBookFormProps) => {
         changedFields.quantity = data.quantity;
       if (data.synopsis !== initialData.synopsis)
         changedFields.synopsis = data.synopsis;
+      if (data.category !== initialData.category.id)
+        changedFields.category = data.category;
+
+      console.log('data.category', data.category);
+      console.log('initialData.category.id', initialData.category.id);
 
       if (Object.keys(changedFields).length > 0) {
         await booksService.editBook(initialData.id, changedFields);
@@ -112,7 +119,6 @@ export const EditBookForm = ({ initialData }: EditBookFormProps) => {
                 />
               )}
             </div>
-
             <div>
               <Input label="Author" type="text" name="author" />
               {methods.formState.errors.author && (
@@ -121,7 +127,14 @@ export const EditBookForm = ({ initialData }: EditBookFormProps) => {
                 />
               )}
             </div>
-
+            <div>
+              <Input label="isbn" type="text" name="isbn" />
+              {methods.formState.errors.isbn && (
+                <ErrorComponent
+                  message={methods.formState.errors.isbn.message}
+                />
+              )}
+            </div>
             <div className={styles.twoInputsContainer}>
               <div>
                 <Input label="publisher" type="text" name="publisher" />
@@ -140,17 +153,15 @@ export const EditBookForm = ({ initialData }: EditBookFormProps) => {
                 )}
               </div>
             </div>
-
             <div className={styles.twoInputsContainer}>
               <div>
-                <Input label="isbn" type="text" name="isbn" />
-                {methods.formState.errors.isbn && (
+                <Input label="Category" type="number" name="category" />
+                {methods.formState.errors.category && (
                   <ErrorComponent
-                    message={methods.formState.errors.isbn.message}
+                    message={methods.formState.errors.category.message}
                   />
                 )}
               </div>
-
               <div>
                 <Input label="quantity" type="number" name="quantity" />
                 {methods.formState.errors.quantity && (
@@ -160,7 +171,6 @@ export const EditBookForm = ({ initialData }: EditBookFormProps) => {
                 )}
               </div>
             </div>
-
             <div>
               <Input label="synopsis" type="textarea" name="synopsis" />
               {methods.formState.errors.synopsis && (
