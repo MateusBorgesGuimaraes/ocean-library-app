@@ -9,7 +9,12 @@ export interface ColumnConfig<T> {
   link?: {
     href: (item: T) => string;
     external?: boolean;
-    text?: string; // New property for custom link text
+    text?: string;
+  };
+  button?: {
+    text: string;
+    onClick: (item: T) => Promise<void>;
+    disabled?: (item: T) => boolean;
   };
 }
 
@@ -25,6 +30,19 @@ function DataTable<T>({ data, columns, caption }: DataTableProps<T>) {
   }
 
   const renderCellContent = (item: T, column: ColumnConfig<T>) => {
+    if (column.button) {
+      const isDisabled = column.button.disabled?.(item) ?? false;
+      return (
+        <button
+          onClick={() => column.button!.onClick(item)}
+          disabled={isDisabled}
+          className={styles.button}
+        >
+          {column.button.text}
+        </button>
+      );
+    }
+
     const value = item[column.key];
     const displayValue = column.transform
       ? column.transform(value)

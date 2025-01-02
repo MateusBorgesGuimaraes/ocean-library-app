@@ -20,7 +20,12 @@ export const SearchBox = ({ data, clearSearch }: SearchBoxProps) => {
         {data.map((item) => (
           <li key={item.id} onClick={clearSearch}>
             <Link href={`/book/${item.id}`}>
-              <Image src={icons.bookIcon} alt="book icon" />
+              <Image
+                src={icons.bookIcon}
+                alt="book icon"
+                width={24}
+                height={24}
+              />
               <p>{item.title}</p>
             </Link>
           </li>

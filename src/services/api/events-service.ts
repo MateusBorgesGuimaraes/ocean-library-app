@@ -161,4 +161,18 @@ export const eventsService = {
       return null;
     }
   },
+
+  attendedEvent: async (eventId: number, userId: number) => {
+    try {
+      const response = await apiClient.patch(
+        `/library-events/${eventId}/registrations/${userId}/attended`,
+      );
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      return null;
+    }
+  },
 };

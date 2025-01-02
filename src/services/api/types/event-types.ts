@@ -52,6 +52,7 @@ export type UserEventRegistration = {
   attended: boolean;
 };
 
+// usar o de baixo
 export type UserRegistrationData = {
   userId: number;
   userName: string;

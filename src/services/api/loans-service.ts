@@ -112,10 +112,18 @@ export const loanService = {
   },
 
   async getUserLoans(userId: string, page: number = 1, limit: number = 6) {
-    const response = await apiClient.get(
-      `/loans/user/${userId}?page=${page}&limit=${limit}`,
-    );
-    return response.data;
+    try {
+      const response = await apiClient.get(
+        `/loans/user/${userId}?page=${page}&limit=${limit}`,
+      );
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(error);
+      }
+      console.error('Unexpected error in createLoan:', error);
+      return null;
+    }
   },
 
   async getUserLoansByEmail(

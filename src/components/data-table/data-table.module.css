@@ -27,7 +27,7 @@
 }
 
 .cell a {
-  color: #253EE1;
+  color: #253ee1;
   text-decoration: underline;
 }
 
@@ -51,7 +51,8 @@
     border-radius: 6px;
     margin-bottom: 1rem;
     padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+      rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   }
 
   .mobileCardRow {
@@ -78,7 +79,27 @@
   }
 
   .mobileCardValue a {
-    color: #253EE1;
+    color: #253ee1;
     text-decoration: underline;
   }
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  background-color: var(--color-primary-300);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

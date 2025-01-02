@@ -72,9 +72,6 @@ export const EditBookForm = ({ initialData }: EditBookFormProps) => {
       if (data.category !== initialData.category.id)
         changedFields.category = data.category;
 
-      console.log('data.category', data.category);
-      console.log('initialData.category.id', initialData.category.id);
-
       if (Object.keys(changedFields).length > 0) {
         await booksService.editBook(initialData.id, changedFields);
       }

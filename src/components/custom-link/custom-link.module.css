@@ -9,6 +9,7 @@
   gap: 0.375rem;
   align-items: center;
   justify-content: center;
+  align-self: self-start;
 }
 
 .link:hover {

@@ -6,6 +6,7 @@ export type User = {
   name: string;
   email: string;
   password: string;
+  permissions: UserPermissions[];
   loans: Loan[];
   events: LibraryEventRegistration[];
   createdAt: string;
@@ -16,3 +17,11 @@ export type CreatedUser = Omit<
   User,
   'id' | 'createdAt' | 'updatedAt' | 'events' | 'loans'
 >;
+
+export enum UserPermissions {
+  admin = 'admin',
+  librarian = 'librarian',
+  socialMedia = 'socialMedia',
+  stockController = 'stockController',
+  user = 'user',
+}

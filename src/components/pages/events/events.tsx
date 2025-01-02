@@ -31,7 +31,7 @@ export const Events = () => {
           addToast({
             title: 'Erro!',
             message: error.message,
-            type: 'error',
+            type: 'error', 
             duration: 5000,
           });
         } else {
