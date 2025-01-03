@@ -1,22 +1,22 @@
 :root {
-  --color-primary-50: #EDFCFD;
-  --color-primary-100: #E0FBFC;
-  --color-primary-200: #98C1D9;
-  --color-primary-300: #3D5A80;
-  --color-primary-400: #1E4E8E;
+  --color-primary-50: #edfcfd;
+  --color-primary-100: #e0fbfc;
+  --color-primary-200: #98c1d9;
+  --color-primary-300: #3d5a80;
+  --color-primary-400: #1e4e8e;
   --color-primary-500: #293241;
 
-  --color-green: #7CFC00;
-  --color-red: #D22B2B;
+  --color-green: #7cfc00;
+  --color-red: #d22b2b;
 
-  --color-secondary-100: #EE6C4D;
+  --color-secondary-100: #ee6c4d;
 
-  --color-gray-50: #F7F8F9;
-  --color-gray-100: #F1F5F8;
-  --color-gray-200: #E8EFF2;
-  --color-gray-300: #CCD8DE;
-  --color-gray-400: #A0ACB2;
-  --color-gray-500: #646F75;
+  --color-gray-50: #f7f8f9;
+  --color-gray-100: #f1f5f8;
+  --color-gray-200: #e8eff2;
+  --color-gray-300: #ccd8de;
+  --color-gray-400: #a0acb2;
+  --color-gray-500: #646f75;
 }
 
 html,
@@ -88,7 +88,12 @@ button {
   column-gap: 1.25rem;
 }
 
+nextjs-portal {
+  display: none;
+}
+
 .sidebar {
+  padding-top: 0;
   grid-column: 1;
 }
 
@@ -113,7 +118,7 @@ button {
   grid-row: 3;
 }
 
-@media(width < 112.5rem) {
+@media (width < 112.5rem) {
   .layout {
     grid-template-columns: 300px 1fr;
   }
@@ -124,7 +129,7 @@ button {
     display: flex;
     gap: 3rem;
   }
-  
+
   .main-content {
     grid-column: 2;
     grid-row: 2;
@@ -138,8 +143,7 @@ button {
   }
 }
 
-
-@media(width < 62.5rem) {
+@media (width < 62.5rem) {
   .sidebar {
     display: none;
   }
@@ -156,24 +160,24 @@ button {
     display: flex;
     gap: 3rem;
   }
-  
+
   .main-content {
     grid-column: 1;
     grid-row: 2;
-    }
-
-    .footer {
-      /* max-width: 100%; */
-      grid-column: 1;
-      grid-row: 3;
-    }
   }
 
-  @media(width < 37.5rem) {
-    .layout {
-      padding: .75rem;
-    }
-    h1 {
-      line-height:  1.2;
-    }
+  .footer {
+    /* max-width: 100%; */
+    grid-column: 1;
+    grid-row: 3;
   }
+}
+
+@media (width < 37.5rem) {
+  .layout {
+    padding: 0.75rem;
+  }
+  h1 {
+    line-height: 1.2;
+  }
+}

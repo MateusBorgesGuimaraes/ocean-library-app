@@ -1,4 +1,5 @@
 import { UserLoan } from '@/components/dashboard/librarian/user-loan/user-loan';
+import { RouteGuard } from '@/components/route-guard/route-guard';
 type Params = {
   params: Promise<{
     id: string;
@@ -8,8 +9,10 @@ type Params = {
 export default async function UserLoanPage(props: Params) {
   const params = await props.params;
   return (
-    <section>
-      <UserLoan id={params.id} />
-    </section>
+    <RouteGuard>
+      <section>
+        <UserLoan id={params.id} />
+      </section>
+    </RouteGuard>
   );
 }

@@ -45,7 +45,7 @@ export const LoginForm = ({ closeModal }: LoginProps) => {
 
         const loans = await loanService.getUserLoans(String(response.id));
 
-        if (loans.status === 404) {
+        if (loans.statusCode === 404) {
           return;
         }
 
@@ -61,12 +61,15 @@ export const LoginForm = ({ closeModal }: LoginProps) => {
           return;
         }
 
-        if (events) {
+        if (events.events.length > 0) {
           setUserEvents(events);
         }
       }
     } catch (error) {
-      if (error instanceof ApiError) {
+      if (
+        error instanceof ApiError &&
+        error.message !== 'No loans found for this user'
+      ) {
         addToast({
           title: 'Erro!',
           message: error.message,

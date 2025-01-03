@@ -1,11 +1,8 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
-import { Sidebar } from '@/components/sidebar';
-import { Header } from '@/components/header';
-import { BookPreview } from '@/components/book-preview/book-preview';
-import { Footer } from '@/components/footer/footer';
-import { ToastContainer } from '@/components/toast/toast-container';
+import { AuthProvider } from './providers';
+import { ClientLayout } from './client-layout';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -26,22 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} layout`}>
-        <aside className="sidebar">
-          <Sidebar />
-        </aside>
-        <header className="header">
-          <Header />
-        </header>
-        <main className="main-content">
-          <ToastContainer />
-          {children}
-        </main>
-        <div className="book-preview">
-          <BookPreview />
-        </div>
-        <div className="footer">
-          <Footer />
-        </div>
+        <AuthProvider>
+          <ClientLayout>{children}</ClientLayout>
+        </AuthProvider>
       </body>
     </html>
   );

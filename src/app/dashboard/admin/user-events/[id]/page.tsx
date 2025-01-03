@@ -1,4 +1,5 @@
 import { UserEvents } from '@/components/dashboard/admin/user-events/user-events';
+import { RouteGuard } from '@/components/route-guard/route-guard';
 
 type Params = {
   params: Promise<{
@@ -9,8 +10,10 @@ type Params = {
 export default async function UserEventsPage(props: Params) {
   const params = await props.params;
   return (
-    <section>
-      <UserEvents id={params.id} />
-    </section>
+    <RouteGuard>
+      <section>
+        <UserEvents id={params.id} />
+      </section>
+    </RouteGuard>
   );
 }

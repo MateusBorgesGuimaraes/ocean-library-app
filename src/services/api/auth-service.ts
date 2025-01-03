@@ -29,6 +29,25 @@ export const authService = {
     }
   },
 
+  async autoLogin(): Promise<ReturnedUser | null> {
+    const token = this.getToken();
+
+    if (!token) {
+      return null;
+    }
+
+    try {
+      const response = await apiClient.get('/auth/profile');
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        this.removeToken();
+        throw new ApiError(error);
+      }
+      return null;
+    }
+  },
+
   async postRegisterData({
     name,
     email,

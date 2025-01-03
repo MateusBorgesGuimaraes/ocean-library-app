@@ -1,4 +1,5 @@
 import { DynamicTitleHeaderSocialNews } from '@/components/dynamic-headers/social-dynamic-headers/dynamic-title-header-social-news/dynamic-title-header-social-news';
+import { RouteGuard } from '@/components/route-guard/route-guard';
 
 export default function NewsLayout({
   children,
@@ -6,11 +7,13 @@ export default function NewsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section>
-      <div>
-        <DynamicTitleHeaderSocialNews />
-      </div>
-      {children}
-    </section>
+    <RouteGuard>
+      <section>
+        <div>
+          <DynamicTitleHeaderSocialNews />
+        </div>
+        {children}
+      </section>
+    </RouteGuard>
   );
 }
