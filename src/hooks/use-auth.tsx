@@ -21,11 +21,11 @@ export const useAuth = () => {
         setUser(userData);
       } else {
         removeUser();
-        router.push('/login');
+        router.push('/');
       }
     } catch (error) {
       removeUser();
-      router.push('/login');
+      router.push('/');
     }
   };
 

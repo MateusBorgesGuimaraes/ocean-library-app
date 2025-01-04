@@ -3,11 +3,11 @@
   width: 18.5rem;
   min-width: 18.5rem;
   height: 18.75rem;
-  border-radius: .375rem;
+  border-radius: 0.375rem;
   background-size: cover;
   background-position: center;
   display: flex;
-  padding: .75rem;
+  padding: 0.75rem;
   flex-direction: column;
   justify-content: space-between;
   background-repeat: no-repeat;
@@ -16,11 +16,12 @@
 .eventTitle {
   text-align: center;
   align-self: center;
+  max-width: 260px;
   color: white;
   background: rgba(0, 0, 0, 0.47);
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  padding: .25rem;
+  padding: 0.25rem;
 }
 
 .footerCard {
@@ -33,12 +34,12 @@
 
 .register {
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
-  border-radius: .375rem;
+  border-radius: 0.375rem;
   font-size: 1rem;
   color: white;
   background: black;
   font-weight: 600;
-  padding: .375rem 1.125rem;
+  padding: 0.375rem 1.125rem;
   cursor: pointer;
 }
 
@@ -49,25 +50,24 @@
   background: var(--color-green);
 }
 
-@media(width < 81.25rem) {
+@media (width < 81.25rem) {
   .cardContainer {
     width: 13.75rem;
     height: 16.75rem;
   }
-  
+
   .eventTitle {
     width: max-content;
   }
-  
+
   .register {
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    border-radius: .375rem;
+    border-radius: 0.375rem;
     font-size: 1rem;
     color: white;
     background: black;
     font-weight: 600;
-    padding: .375rem 1.125rem;
+    padding: 0.375rem 1.125rem;
     cursor: pointer;
   }
-  
 }
