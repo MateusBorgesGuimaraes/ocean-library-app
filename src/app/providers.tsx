@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     init();
-  }, []);
+  }, [checkAuth]);
 
   if (isLoading) {
     return <div>Loading...</div>;

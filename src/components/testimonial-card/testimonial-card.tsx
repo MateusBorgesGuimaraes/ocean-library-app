@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import styles from './testimonial-card.module.css';
 import { icons } from '../../../public/assets/assets';
 

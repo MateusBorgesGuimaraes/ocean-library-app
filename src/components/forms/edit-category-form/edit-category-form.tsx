@@ -22,7 +22,7 @@ type EditCategoryFormProps = {
 };
 
 export const EditCategoryForm = ({ initialData }: EditCategoryFormProps) => {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [, setIsLoading] = React.useState(false);
   const { addToast } = useToastStore();
 
   const methods = useForm<CategoryFormData>({

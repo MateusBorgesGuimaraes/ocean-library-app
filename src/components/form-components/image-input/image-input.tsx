@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import styles from './image-input.module.css';
 import formatLink from '@/functions/formatLink';
+import Image from 'next/image';
 
 interface ImageInputProps {
   label: string;
@@ -88,7 +89,7 @@ export const ImageInput = ({
         />
         {preview ? (
           <div className={styles.previewContainer}>
-            <img src={preview} alt="Preview" className={styles.preview} />
+            <Image src={preview} alt="Preview" className={styles.preview} />
             <button
               type="button"
               onClick={handleRemoveImage}

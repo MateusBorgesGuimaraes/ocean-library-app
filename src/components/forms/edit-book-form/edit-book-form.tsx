@@ -3,7 +3,6 @@
 import styles from './edit-book-form.module.css';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { eventsService } from '@/services/api/events-service';
 import { Input } from '@/components/form-components/input/input';
 import { ErrorComponent } from '@/components/form-components/error-component/error-component';
 import { ApiError } from '@/services/api/utils/api-error';
@@ -33,9 +32,7 @@ type EditBookFormProps = {
 
 export const EditBookForm = ({ initialData }: EditBookFormProps) => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [currentCover, setCurrentCover] = React.useState<string | undefined>(
-    initialData.cover,
-  );
+  const [currentCover] = React.useState<string | undefined>(initialData.cover);
   const { addToast } = useToastStore();
 
   const methods = useForm<BookFormData>({

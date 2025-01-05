@@ -16,7 +16,7 @@ type UserEventsProps = {
 };
 
 export const UserLoansAdmin = ({ id }: UserEventsProps) => {
-  const [userId, setUserId] = React.useState<string>(id);
+  // const [userId] = React.useState<string>(id);
 
   const {
     data: loansData,
@@ -27,7 +27,7 @@ export const UserLoansAdmin = ({ id }: UserEventsProps) => {
     prevPage,
   } = usePagination<Loan, string>({
     fetchFn: loanService.getUserLoans,
-    initialParams: userId,
+    initialParams: id,
     initialPage: 1,
     initialLimit: 4,
     skip: false,

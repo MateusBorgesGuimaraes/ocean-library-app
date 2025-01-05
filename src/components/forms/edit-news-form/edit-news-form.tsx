@@ -1,17 +1,14 @@
 'use client';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { eventsService } from '@/services/api/events-service';
 import styles from './edit-news-form.module.css';
 import { Input } from '@/components/form-components/input/input';
 import { ErrorComponent } from '@/components/form-components/error-component/error-component';
 import { ApiError } from '@/services/api/utils/api-error';
 import { useToastStore } from '@/store/toast-store';
-import { editEventFormSchema } from '@/components/zod-schemas/edit-event-schema';
 import React from 'react';
 import { ImageInput } from '@/components/form-components/image-input/image-input';
 import { ButtonForm } from '@/components/form-components/button-form/button-form';
-import { LibraryEvent } from '@/services/api/types/event-types';
 import { News } from '@/services/api/types/news-types';
 import { editNewsFormSchema } from '@/components/zod-schemas/edit-news-schema';
 import { newsService } from '@/services/api/news-service';
@@ -30,7 +27,7 @@ type EditNewsFormProps = {
 
 export const EditNewsForm = ({ initialData }: EditNewsFormProps) => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [currentCover, setCurrentCover] = React.useState<string | undefined>(
+  const [currentCover] = React.useState<string | undefined>(
     initialData.coverImage,
   );
   const { addToast } = useToastStore();

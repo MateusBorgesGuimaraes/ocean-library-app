@@ -43,7 +43,9 @@ export const News = ({ id }: NewsProps) => {
 
         <ul className={styles.newsTags}>
           {news.tags.map((tag) => (
-            <li key={tag}>{tag}</li>
+            <li key={tag}>
+              <p>{tag}</p>
+            </li>
           ))}
         </ul>
 

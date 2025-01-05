@@ -29,7 +29,7 @@ type EditEventFormProps = {
 
 export const EditEventForm = ({ initialData }: EditEventFormProps) => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [currentBanner, setCurrentBanner] = React.useState<string | undefined>(
+  const [currentBanner] = React.useState<string | undefined>(
     initialData.banner,
   );
   const { addToast } = useToastStore();

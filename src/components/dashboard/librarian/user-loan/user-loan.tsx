@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import styles from './user-loan.module.css';
-import { images } from '../../../../../public/assets/assets';
 import { TitleHeader } from '@/components/title-header/title-header';
 import { Button } from '@/components/button/button';
 import React from 'react';
@@ -52,7 +51,7 @@ export const UserLoan = ({ id }: UserLoanProps) => {
     };
 
     fetchData();
-  }, []);
+  }, [addToast, id]);
 
   if (!userLoanInfos) {
     return null;

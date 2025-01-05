@@ -19,7 +19,7 @@ interface RoleSelectProps {
   onPermissionsUpdate: (
     id: string,
     permissions: UserPermissions[],
-  ) => Promise<any>;
+  ) => Promise<void>;
 }
 
 interface Role {

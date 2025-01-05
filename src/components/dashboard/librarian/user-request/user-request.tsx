@@ -23,7 +23,6 @@ export const UserRequest = () => {
     data: requests,
     meta,
     loading,
-    error,
     nextPage,
     prevPage,
   } = usePagination<RequestBook>({

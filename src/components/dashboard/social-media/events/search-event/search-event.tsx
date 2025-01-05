@@ -16,7 +16,7 @@ import { ApiError } from '@/services/api/utils/api-error';
 
 export const SearchEvent = () => {
   const [search, setSearch] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
+  const [, setLoading] = React.useState(false);
   const [results, setResults] = React.useState<LibraryEventGetAll[] | []>([]);
   const addToast = useToastStore((state) => state.addToast);
 

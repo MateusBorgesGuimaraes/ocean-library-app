@@ -25,7 +25,7 @@ export const CreateCategoryForm = () => {
 
   const onSubmit = async (data: CategoryFormData) => {
     try {
-      const categoryResponse = await categoryService.createCategory(data.name);
+      await categoryService.createCategory(data.name);
       addToast({
         title: 'Success',
         message: 'Category created successfully!',
