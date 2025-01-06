@@ -89,7 +89,13 @@ export const ImageInput = ({
         />
         {preview ? (
           <div className={styles.previewContainer}>
-            <Image src={preview} alt="Preview" className={styles.preview} />
+            <Image
+              src={preview}
+              alt="Preview"
+              className={styles.preview}
+              width={300}
+              height={300}
+            />
             <button
               type="button"
               onClick={handleRemoveImage}

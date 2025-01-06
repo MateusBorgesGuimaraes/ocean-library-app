@@ -178,7 +178,7 @@ export const EventHome = ({ eventId }: EventCardProps) => {
             </p>
           </div>
           <p className={styles.eventCol2}>
-            vagas restantes:
+            remaining vacancies:
             <span>
               {event.availableSeats}/{event.seats}
             </span>

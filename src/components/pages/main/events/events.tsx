@@ -13,10 +13,10 @@ export const Events = ({ events }: EventsProps) => {
         <h1>Events</h1>
         <div>
           <p>
-            <span className={styles.dec}></span>disponivel
+            <span className={styles.dec}></span>available
           </p>
           <p>
-            <span className={styles.dec}></span>indiponivel
+            <span className={styles.dec}></span>unavailable
           </p>
         </div>
       </div>

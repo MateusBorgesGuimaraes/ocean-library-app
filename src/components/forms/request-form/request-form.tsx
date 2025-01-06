@@ -7,15 +7,50 @@ import { ErrorComponent } from '@/components/form-components/error-component/err
 import { CreatedRequest } from '@/services/api/types/request-types';
 import { requestSchema } from '@/components/zod-schemas/request-schema';
 import { requestService } from '@/services/api/request-service';
+import { ApiError } from 'next/dist/server/api-utils';
+import { useToastStore } from '@/store/toast-store';
 
-export const RequestForm = () => {
+type RequestProps = {
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const RequestForm = ({ closeModal }: RequestProps) => {
+  const addToast = useToastStore((state) => state.addToast);
   const methods = useForm<CreatedRequest>({
     resolver: zodResolver(requestSchema),
   });
 
   async function onSubmit(data: CreatedRequest) {
-    const response = await requestService.postRequest(data);
-    console.log(response);
+    try {
+      const response = await requestService.postRequest(data);
+
+      if (response) {
+        closeModal(false);
+        addToast({
+          title: 'Request successful!',
+          message: 'Your request has been sent.',
+          type: 'success',
+          duration: 5000,
+        });
+      }
+    } catch (error) {
+      closeModal(false);
+      if (error instanceof ApiError) {
+        addToast({
+          title: 'Request Error',
+          message: error.message || 'An error occurred during request',
+          type: 'error',
+          duration: 5000,
+        });
+      } else {
+        addToast({
+          title: 'Unexpected Error',
+          message: 'An unexpected error occurred',
+          type: 'error',
+          duration: 5000,
+        });
+      }
+    }
   }
 
   return (

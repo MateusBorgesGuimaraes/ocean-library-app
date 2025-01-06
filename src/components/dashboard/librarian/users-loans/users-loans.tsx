@@ -34,10 +34,6 @@ export const UsersLoans = () => {
     skip: false,
   });
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   const STATUS = [
     'pending',
     'picked_up',
@@ -79,39 +75,42 @@ export const UsersLoans = () => {
   return (
     <div className={styles.usersLoansContainer}>
       <TitleHeader title="Users Loans" />
-      <div className={styles.usersLoansTable}>
-        <div className={styles.userLoansStatus}>
-          <button
-            className={`${styles.statusButton} ${
-              selectedStatus === '' ? styles.active : ''
-            }`}
-            onClick={() => handleStatusChange('')}
-          >
-            All
-          </button>
-          {STATUS.map((status) => (
+      {error && <div>Error: {error}</div>}
+      {!error && (
+        <div className={styles.usersLoansTable}>
+          <div className={styles.userLoansStatus}>
             <button
-              onClick={() => handleStatusChange(status)}
               className={`${styles.statusButton} ${
-                selectedStatus === status ? styles.active : ''
+                selectedStatus === '' ? styles.active : ''
               }`}
-              key={status}
+              onClick={() => handleStatusChange('')}
             >
-              <p>{status}</p>
+              All
             </button>
-          ))}
+            {STATUS.map((status) => (
+              <button
+                onClick={() => handleStatusChange(status)}
+                className={`${styles.statusButton} ${
+                  selectedStatus === status ? styles.active : ''
+                }`}
+                key={status}
+              >
+                <p>{status}</p>
+              </button>
+            ))}
+          </div>
+          {loading && <Loader />}
+          {!loading && (
+            <DataTable data={USERS_LOANS_DATA} columns={USERS_LOANS_COLUMNS} />
+          )}
+          <PaginationControls
+            prevPage={prevPage}
+            nextPage={nextPage}
+            page={meta.page}
+            totalPages={meta.totalPages}
+          />
         </div>
-        {loading && <Loader />}
-        {!loading && (
-          <DataTable data={USERS_LOANS_DATA} columns={USERS_LOANS_COLUMNS} />
-        )}
-        <PaginationControls
-          prevPage={prevPage}
-          nextPage={nextPage}
-          page={meta.page}
-          totalPages={meta.totalPages}
-        />
-      </div>
+      )}
     </div>
   );
 };

@@ -1,3 +1,7 @@
 .userEvents {
   height: calc(100vh - 2.5rem);
 }
+
+.userEventsTable {
+  margin-top: 1.25rem;
+}

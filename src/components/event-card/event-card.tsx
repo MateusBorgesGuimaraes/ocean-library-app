@@ -19,7 +19,7 @@ export const EventCard = ({ event }: EventCardProps) => {
 
       <div className={styles.footerCard}>
         <Link href={`/event/${event?.id}`} className={styles.register}>
-          participar
+          participate
         </Link>
 
         <span className={styles.dec}></span>

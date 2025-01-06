@@ -48,7 +48,7 @@ export const UserEvents = ({ id }: UserEventsProps) => {
   return (
     <section className={styles.userEvents}>
       <TitleHeader title="User Events" />
-      <div>
+      <div className={styles.userEventsTable}>
         <DataTable
           data={USER_EVENTS_DATA ?? []}
           columns={[

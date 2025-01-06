@@ -208,7 +208,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
             <FormBox.Header title="Request a book" />
             <FormBox.Subtitle text="The books will not necessarily be added, we will evaluate the request and depending on demand it will be approved" />
             <FormBox.Content>
-              <RequestForm />
+              <RequestForm closeModal={setIsOpen3} />
             </FormBox.Content>
           </FormBox>
         </Modal>

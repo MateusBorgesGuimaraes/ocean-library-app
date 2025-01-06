@@ -41,9 +41,9 @@ export const BookBorrow = ({ id }: BookProps) => {
     try {
       if (!user) {
         addToast({
-          title: 'Negado!',
-          message: 'Você precisa estar logado para realizar essa operação.',
-          type: 'info',
+          title: 'Error',
+          message: 'You must be logged in to borrow a book.',
+          type: 'error',
           duration: 5000,
         });
         return;
@@ -54,8 +54,8 @@ export const BookBorrow = ({ id }: BookProps) => {
       if (response) {
         addLoan(response);
         addToast({
-          title: 'Sucesso!',
-          message: 'Livro emprestado com sucesso.',
+          title: 'Success!',
+          message: 'Book loaned successfully.',
           type: 'success',
           duration: 5000,
         });

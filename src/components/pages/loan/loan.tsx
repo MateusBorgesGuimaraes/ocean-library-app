@@ -53,18 +53,6 @@ export const Loan = () => {
     skip: !user?.id,
   });
 
-  if (!user) {
-    return <div>Please log in to view loans</div>;
-  }
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   const LOANS_DATA = loans?.map((loan) => ({
     id: loan.id,
     status: loan.status,
@@ -75,28 +63,34 @@ export const Loan = () => {
   return (
     <div className={styles.loan}>
       <TitleHeader title="User Loans" />
+      {error && <div>Error: {error}</div>}
+      {loading && <div>Loading...</div>}
+      {!user && <div>Please log in to view loans</div>}
+      {!error && !loading && LOANS_DATA && (
+        <>
+          <DataTable
+            data={LOANS_DATA}
+            columns={[
+              { key: 'id', header: 'ID' },
+              { key: 'status', header: 'Status' },
+              { key: 'book', header: 'Book' },
+              { key: 'author', header: 'Author' },
+              {
+                key: 'more',
+                header: 'More',
+                link: { href: (item) => `/book/${item.more}` },
+              },
+            ]}
+          />
 
-      <DataTable
-        data={LOANS_DATA}
-        columns={[
-          { key: 'id', header: 'ID' },
-          { key: 'status', header: 'Status' },
-          { key: 'book', header: 'Book' },
-          { key: 'author', header: 'Author' },
-          {
-            key: 'more',
-            header: 'More',
-            link: { href: (item) => `/book/${item.more}` },
-          },
-        ]}
-      />
-
-      <PaginationControls
-        prevPage={prevPage}
-        nextPage={nextPage}
-        page={meta.page}
-        totalPages={meta.totalPages}
-      />
+          <PaginationControls
+            prevPage={prevPage}
+            nextPage={nextPage}
+            page={meta.page}
+            totalPages={meta.totalPages}
+          />
+        </>
+      )}
     </div>
   );
 };
