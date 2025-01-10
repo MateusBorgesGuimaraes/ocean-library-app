@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OCEAN LIBRARY
 
-## Getting Started
+O **Ocean Library** é um site fictício de biblioteca desenvolvido com o objetivo de proporcionar uma experiência moderna e funcional para gerenciamento de livros, eventos e notícias, tanto para usuários comuns quanto para administradores da plataforma.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎯 **Objetivos Gerais do Site**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Proporcionar uma página inicial minimalista com livros disponíveis para empréstimo.
+- Exibir um **preview** detalhado de cada livro.
+- Oferecer um sistema de buscas com **filtros avançados**.
+- Disponibilizar notícias e eventos relevantes para os usuários.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 👥 **Funcionalidades para Usuários Não Cadastrados**
 
-## Learn More
+- Visualizar livros, eventos e notícias disponíveis, **sem interação com empréstimos ou cadastros**.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔑 **Funcionalidades para Usuários Cadastrados**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Empréstimo, devolução e cancelamento** de livros.
+- **Registro e cancelamento** de participação em eventos.
+- Solicitar a adição de novos livros ao acervo.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📚 **Funcionalidades para a Rota Privada de Bibliotecários (Librarian)**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Editar o status dos empréstimos dos usuários.
+- Visualizar todos os empréstimos realizados.
+- Pesquisar e visualizar empréstimos de um usuário específico.
+- Realizar empréstimos diretos a partir do **ID** do livro e do usuário.
+- Visualizar requisições de novos livros feitas pelos usuários.
+
+---
+
+## 📰 **Funcionalidades para a Rota Privada de Social Media**
+
+### Gerenciamento de Notícias:
+- Criar, editar, pesquisar e deletar notícias.
+- Visualizar todas as notícias publicadas.
+
+### Gerenciamento de Eventos:
+- Criar, editar, pesquisar e deletar eventos.
+- Visualizar todos os eventos cadastrados.
+- Visualizar todos os registros de participação em eventos.
+
+---
+
+## 🏷️ **Funcionalidades para a Rota Privada de Gerente de Estoque (Stock Manager)**
+
+### Gerenciamento de Categorias:
+- Criar, editar, pesquisar e deletar categorias.
+- Visualizar todas as categorias cadastradas.
+
+### Gerenciamento de Livros:
+- Criar, editar, pesquisar e deletar livros.
+- Visualizar todos os livros disponíveis no acervo.
+
+---
+
+## 🛠️ **Funcionalidades para a Rota Privada de Administrador (Admin)**
+
+- Todas as permissões das rotas privadas anteriores.
+- Gerenciar as permissões (**roles**) dos usuários.
+- Deletar usuários cadastrados na plataforma.
+
+---
+
+## ⚠️ **Observações**
+
+- Algumas funcionalidades não foram implementadas, como um sistema de notificações para avisos de vencimento de empréstimos.  
+- Operações que exigiriam uma API online para monitorar o status das requisições em tempo real não foram incluídas nesta versão.
+
+---
+
+## 🚀 **Contribuindo**
+
+Sinta-se à vontade para contribuir com o projeto, seja relatando problemas, sugerindo melhorias ou adicionando novas funcionalidades. Qualquer feedback é bem-vindo!
+
+---
+
+## 📄 **Licença**
+
+Este projeto é de uso livre para fins de estudo e aprendizado.
